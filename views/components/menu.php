@@ -21,7 +21,7 @@
                 <a href="/customers"><i class="fa fa-users fa-fw"></i>Customers</a>
             </li>
             <li class="">
-                <a href="/merchants"><i class="fa fa-industry fa-fw"></i>Merchants</a>
+                <a href="/merchants"><i class="fa fa-industry fa-fw"></i>Canteens</a>
             </li>
             <li class="">
                 <a href="/products"><i class="fa fa-shopping-bag fa-fw"></i>Products</a>
@@ -33,7 +33,7 @@
                 <a href="/transactions"><i class="fa fa-credit-card fa-fw"></i>Transactions</a>
             </li>
             <li class="">
-                <a href="/stocks"><i class="fa fa-archive fa-fw"></i>Stocks</a>
+                <a href="/stocks"><i class="fa fa-archive fa-fw"></i>Stock</a>
             </li>
             <li class="">
                 <a href="/items_sold"><i class="fa fa-shopping-cart fa-fw"></i>Items sold</a>
