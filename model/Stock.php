@@ -1,11 +1,4 @@
 <?php
-/**
- * Jewellery Financial Accounting
- *
- * Author: Siddhesh Patil
- * Date: 30-Sep-17
- * Time: 5:36 PM
- */
 
 require_once 'Model.php';
 

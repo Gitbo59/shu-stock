@@ -1,11 +1,5 @@
 <?php
-/**
- * Jewellery Financial Accounting
- *
- * Author: Siddhesh Patil
- * Date: 30-Sep-17
- * Time: 3:40 PM
- */
+
 require_once 'Controller.php';
 require_once __DIR__ . '/../model/Merchant.php';
 require_once __DIR__ . '/../helpers/ValidateParams.php';

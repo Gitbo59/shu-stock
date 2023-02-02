@@ -1,11 +1,5 @@
 <?php
-/**
- * Jewellery Financial Accounting
- *
- * Author: Siddhesh Patil
- * Date: 30-Sep-17
- * Time: 4:41 PM
- */
+
 require_once 'Model.php';
 
 class Rate extends Model

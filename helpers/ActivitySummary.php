@@ -1,12 +1,6 @@
 <?php
 
-/**
- * Jewellery Financial Accounting
- *
- * Author: Siddhesh Patil
- * Date: 30-Sep-17
- * Time: 7:49 PM
- */
+
 class ActivitySummary
 {
 

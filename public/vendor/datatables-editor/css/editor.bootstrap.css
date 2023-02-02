@@ -209,7 +209,7 @@ div.DTE_Bubble div.DTE_Bubble_Liner div.DTE_Bubble_Close:after {
   padding-left: 1px;
 }
 div.DTE_Bubble div.DTE_Bubble_Liner div.DTE_Bubble_Close:hover {
-  background-color: #092079;
+  background-color: #a11579;
   box-shadow: 2px 2px 9px #111;
 }
 div.DTE_Bubble div.DTE_Bubble_Triangle {
@@ -476,7 +476,7 @@ div.editor-datetime table td.day.today button {
   font-weight: bold;
 }
 div.editor-datetime table td.day.selected button {
-  background: #337ab7;
+  background: #a11579;
   color: white;
   border-radius: 2px;
 }
@@ -674,7 +674,7 @@ div.DTE div.DTE_Processing_Indicator:after {
   }
 }
 table.dataTable tbody tr.highlight {
-  background-color: #3399ff !important;
+  background-color: #a11579 !important;
 }
 table.dataTable tbody tr.highlight,
 table.dataTable tbody tr.noHighlight,

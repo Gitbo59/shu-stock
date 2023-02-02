@@ -106,19 +106,19 @@ div.DTE div.DTE_Form_Buttons button:active {
 }
 div.DTE button.btn:focus,
 div.DTE div.DTE_Form_Buttons button:focus {
-  border: 1px solid #426c9e;
+  border: 1px solid #a11579;
   text-shadow: 0 1px 0 #c4def1;
   background-color: #a3d0ef 100%;
   /* Fallback */
-  background-image: -webkit-linear-gradient(top, #a3d0ef 0%, #79ace9 65%, #a3d0ef 100%);
+  background-image: -webkit-linear-gradient(top, #a3d0ef 0%, #a11579 65%, #a3d0ef 100%);
   /* Chrome 10+, Saf5.1+, iOS 5+ */
-  background-image: -moz-linear-gradient(top, #a3d0ef 0%, #79ace9 65%, #a3d0ef 100%);
+  background-image: -moz-linear-gradient(top, #a3d0ef 0%, #a11579 65%, #a3d0ef 100%);
   /* FF3.6 */
-  background-image: -ms-linear-gradient(top, #a3d0ef 0%, #79ace9 65%, #a3d0ef 100%);
+  background-image: -ms-linear-gradient(top, #a3d0ef 0%, #a11579 65%, #a3d0ef 100%);
   /* IE10 */
-  background-image: -o-linear-gradient(top, #a3d0ef 0%, #79ace9 65%, #a3d0ef 100%);
+  background-image: -o-linear-gradient(top, #a3d0ef 0%, #a11579 65%, #a3d0ef 100%);
   /* Opera 11.10+ */
-  background-image: linear-gradient(to bottom, #a3d0ef 0%, #79ace9 65%, #a3d0ef 100%);
+  background-image: linear-gradient(to bottom, #a3d0ef 0%, #a11579 65%, #a3d0ef 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#a3d0ef', EndColorStr='#a3d0ef');
   outline: none;
 }
@@ -287,7 +287,7 @@ div.DTE_Field div.multi-restore {
   margin-top: 0.5em;
   font-size: 0.8em;
   line-height: 1.25em;
-  color: #3879d9;
+  color: #a11579;
 }
 div.DTE_Field div.multi-restore:hover {
   text-decoration: underline;

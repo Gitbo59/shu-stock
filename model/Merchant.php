@@ -1,18 +1,12 @@
 <?php
-/**
- * Jewellery Financial Accounting
- *
- * Author: Siddhesh Patil
- * Date: 30-Sep-17
- * Time: 3:40 PM
- */
+
 require_once 'Model.php';
 
 class Merchant extends Model
 {
     function count()
     {
-        $sql = "SELECT * FROM merchants;";
+        $sql = "SELECT * FROM canteens;";
         $result = $this->conn->query($sql);
 
         return $result->num_rows;
@@ -21,7 +15,7 @@ class Merchant extends Model
     function get()
     {
         $json = [];
-        $sql = "SELECT * FROM merchants;";
+        $sql = "SELECT * FROM canteens;";
         $result = $this->conn->query($sql);
         while ($row = mysqli_fetch_assoc($result)) {
             $json[] = $row;
@@ -32,7 +26,7 @@ class Merchant extends Model
 
     function insert($data)
     {
-        $sql = "INSERT INTO merchants (`name`, `address`, `email`, `phone`) VALUES ('" . $data['name'] . "', '" . $data['address'] . "', '" . $data['email'] . "', '" . $data['phone'] . "')";
+        $sql = "INSERT INTO canteens (`name`, `address`, `email`, `phone`) VALUES ('" . $data['name'] . "', '" . $data['address'] . "', '" . $data['email'] . "', '" . $data['phone'] . "')";
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
@@ -45,7 +39,7 @@ class Merchant extends Model
 
     function show($id)
     {
-        $sql = "SELECT * FROM merchants WHERE id='$id';";
+        $sql = "SELECT * FROM canteens WHERE id='$id';";
         $result = $this->conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -60,7 +54,7 @@ class Merchant extends Model
 
     function update($data)
     {
-        $sql = "UPDATE merchants SET name='" . $data['name'] . "', address='" . $data['address'] . "', phone='" . $data['phone'] . "', email='" . $data['email'] . "' WHERE id=" . $data["id"];
+        $sql = "UPDATE canteens SET name='" . $data['name'] . "', address='" . $data['address'] . "', phone='" . $data['phone'] . "', email='" . $data['email'] . "' WHERE id=" . $data["id"];
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
@@ -73,7 +67,7 @@ class Merchant extends Model
 
     function delete($id)
     {
-        $sql = "DELETE FROM merchants WHERE id='$id'";
+        $sql = "DELETE FROM canteens WHERE id='$id'";
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();

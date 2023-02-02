@@ -86,10 +86,10 @@ INSERT INTO `employees` (`id`, `name`, `address`, `phone`, `gender`, `doj`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `merchants`
+-- Table structure for table `canteens`
 --
 
-CREATE TABLE `merchants` (
+CREATE TABLE `canteens` (
   `id` int(11) NOT NULL,
   `name` varchar(70) NOT NULL,
   `address` varchar(95) NOT NULL,
@@ -98,20 +98,20 @@ CREATE TABLE `merchants` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `merchants`
+-- Dumping data for table `canteens`
 --
 
-INSERT INTO `merchants` (`id`, `name`, `address`, `email`, `phone`) VALUES
-(1, 'Merchant A', 'Address M0', 'merchant00@mail.com', 9945231220),
-(2, 'Merchant B', 'Address M1', 'merchant01@mail.com', 9945231221),
-(3, 'Merchant C', 'Address M2', 'merchant02@mail.com', 9945231222),
-(4, 'Merchant D', 'Address M3', 'merchant03@mail.com', 9945231223),
-(5, 'Merchant E', 'Address M4', 'merchant04@mail.com', 9945231224),
-(6, 'Merchant F', 'Address M5', 'merchant05@mail.com', 9945231225),
-(7, 'Merchant G', 'Address M6', 'merchant06@mail.com', 9945231226),
-(8, 'Merchant H', 'Address M7', 'merchant07@mail.com', 9945231227),
-(9, 'Merchant I', 'Address M8', 'merchant08@mail.com', 9945231228),
-(10, 'Merchant J', 'Address M9', 'merchant09@mail.com', 9945231229);
+INSERT INTO `canteens` (`id`, `name`, `address`, `email`, `phone`) VALUES
+(1, 'Cantor', 'Address M0', 'canteen00@mail.com', 9945231220),
+(2, 'Adsetts', 'Address M1', 'canteen01@mail.com', 9945231221),
+(3, 'Aspect Court', 'Address M2', 'canteen02@mail.com', 9945231222),
+(4, 'Atrium', 'Address M3', 'canteen03@mail.com', 9945231223),
+(5, 'Charles Street', 'Address M4', 'canteen04@mail.com', 9945231224),
+(6, 'Owen', 'Address M5', 'canteen05@mail.com', 9945231225),
+(7, 'canteen 1', 'Address M6', 'canteen06@mail.com', 9945231226),
+(8, 'canteen H', 'Address M7', 'canteen07@mail.com', 9945231227),
+(9, 'canteen I', 'Address M8', 'canteen08@mail.com', 9945231228),
+(10, 'canteen J', 'Address M9', 'canteen09@mail.com', 9945231229);
 -- --------------------------------------------------------
 
 --
@@ -199,7 +199,7 @@ INSERT INTO `sold_items` (`id`, `stock_id`, `customer_id`, `employee_id`, `trans
 CREATE TABLE `stocks` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `merchant_id` int(11) NOT NULL,
+  `canteen_id` int(11) NOT NULL,
   `weight` int(11) UNSIGNED NOT NULL,
   `purity` int(10) UNSIGNED NOT NULL,
   `dop` datetime NOT NULL
@@ -209,7 +209,7 @@ CREATE TABLE `stocks` (
 -- Dumping data for table `stocks`
 --
 
-INSERT INTO `stocks` (`id`, `product_id`, `merchant_id`, `weight`, `purity`, `dop`) VALUES
+INSERT INTO `stocks` (`id`, `product_id`, `canteen_id`, `weight`, `purity`, `dop`) VALUES
 (1, 1, 1, 12, 12, '2017-09-06 00:00:00');
 
 -- --------------------------------------------------------
@@ -281,9 +281,9 @@ ALTER TABLE `employees`
   ADD UNIQUE KEY `phone` (`phone`);
 
 --
--- Indexes for table `merchants`
+-- Indexes for table `canteens`
 --
-ALTER TABLE `merchants`
+ALTER TABLE `canteens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `phone` (`phone`);
@@ -318,7 +318,7 @@ ALTER TABLE `sold_items`
 ALTER TABLE `stocks`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `product_id` (`product_id`),
-  ADD KEY `merchant_id` (`merchant_id`);
+  ADD KEY `canteen_id` (`canteen_id`);
 
 --
 -- Indexes for table `transactions`
@@ -350,9 +350,9 @@ ALTER TABLE `customers`
 ALTER TABLE `employees`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `merchants`
+-- AUTO_INCREMENT for table `canteens`
 --
-ALTER TABLE `merchants`
+ALTER TABLE `canteens`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `products`
@@ -401,7 +401,7 @@ ALTER TABLE `sold_items`
 -- Constraints for table `stocks`
 --
 ALTER TABLE `stocks`
-  ADD CONSTRAINT `stocks_ibfk_1` FOREIGN KEY (`merchant_id`) REFERENCES `merchants` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `stocks_ibfk_1` FOREIGN KEY (`canteen_id`) REFERENCES `canteens` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `stocks_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

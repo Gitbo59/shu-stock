@@ -1,12 +1,6 @@
 <?php
 
-/**
- * Jewellery Financial Accounting
- *
- * Author: Siddhesh Patil
- * Date: 30-Sep-17
- * Time: 2:13 AM
- */
+
 require_once 'Model.php';
 
 class Transaction extends Model

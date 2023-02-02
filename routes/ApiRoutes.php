@@ -1,11 +1,4 @@
 <?php
-/**
- * Jewellery Financial Accounting
- *
- * Author: Siddhesh Patil
- * Date: 29-Sep-17
- * Time: 7:03 PM
- */
 
 require_once __DIR__ . '/../routes/Route.php';
 require_once __DIR__ . '/../routes/ValidateRoutes.php';

@@ -5,6 +5,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/">SHUUUUUUU</a>
+    <a class="navbar-brand" href="/">SHU STOCK HUB</a>
 </div>
 <!-- /.navbar-header -->
