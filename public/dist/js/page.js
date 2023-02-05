@@ -513,10 +513,10 @@ $(document).ready(function () {
             .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 
     }
-   else if (location.pathname == '/merchants') {
+   else if (location.pathname == '/canteens') {
 
-        $('.page-header').html('Merchants');
-        $('.panel-heading').html('Add, Edit, Delete merchants');
+        $('.page-header').html('Canteens');
+        $('.panel-heading').html('Add, Edit, Delete canteens');
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Name'}) );
@@ -527,8 +527,8 @@ $(document).ready(function () {
         $('#table').on( 'click', 'tr', function () {
             try {
                 row_id = table.row( this ).data().id;
-                editor.s.ajax.edit.url = '/api/merchants';
-                editor.s.ajax.remove.url = '/api/merchants';
+                editor.s.ajax.edit.url = '/api/canteens';
+                editor.s.ajax.remove.url = '/api/canteens';
             }
             catch (e) {
 
@@ -538,7 +538,7 @@ $(document).ready(function () {
         var table = $('#table').DataTable({
             'responsive': true,
             "ajax": {
-                "url": "/api/merchants",
+                "url": "/api/canteens",
                 "type": "GET",
             },
             "columns": [
@@ -559,7 +559,7 @@ $(document).ready(function () {
             ajax: {
                 create: {
                     type: 'POST',
-                    url: '/api/merchants',
+                    url: '/api/canteens',
                     data: function(d){
                         d.name= $("#DTE_Field_name").val();
                         d.address= $("#DTE_Field_address").val();
@@ -570,7 +570,7 @@ $(document).ready(function () {
                     },
                     success: function () {
                         table.ajax.reload();
-                        $.notify('New merchant added.', 'success');
+                        $.notify('New canteen added.', 'success');
                     },
                     error: function (response) {
                         var json = $.parseJSON(response.responseText);
@@ -581,7 +581,7 @@ $(document).ready(function () {
                 },
                 edit: {
                     type: 'PATCH',
-                    url:  '/api/merchants',
+                    url:  '/api/canteens',
                     data: function(d){
                         d.id = row_id;
                         d.name= $("#DTE_Field_name").val();
@@ -592,7 +592,7 @@ $(document).ready(function () {
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('Merchant updated.', 'success');
+                        $.notify('Canteen updated.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -604,14 +604,14 @@ $(document).ready(function () {
                 },
                 remove: {
                     type: 'DELETE',
-                    url:  '/api/merchants',
+                    url:  '/api/canteens',
                     data: function(d){
                         d.id = row_id;
                         delete d.data;
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('Merchant has been trashed.', 'success');
+                        $.notify('Canteen has been trashed.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -648,13 +648,13 @@ $(document).ready(function () {
             ],
             i18n: {
                 create: {
-                    title:  "Add Merchant"
+                    title:  "Add Canteen"
                 },
                 edit: {
-                    title:  "Edit Merchant"
+                    title:  "Edit Canteen"
                 },
                 remove: {
-                    title:  "Trash Merchant"
+                    title:  "Trash Canteen"
                 }
             }
         } );
@@ -664,7 +664,7 @@ $(document).ready(function () {
             { extend: "edit",  className: 'btn btn-default',  editor: editor },
             { extend: "remove", className: 'btn btn-danger', editor: editor,
                 formMessage: function ( e, dt ) {
-                    return 'Are you sure you want to trash the merchant?';
+                    return 'Are you sure you want to trash the canteen?';
                 }
             }
         ] );
@@ -990,7 +990,7 @@ $(document).ready(function () {
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Product'}) );
-        $('thead tr').append( $('<th />', {text : 'Merchant'}) );
+        $('thead tr').append( $('<th />', {text : 'Canteen'}) );
         $('thead tr').append( $('<th />', {text : 'Weight'}) );
         $('thead tr').append( $('<th />', {text : 'Purity'}) );
         $('thead tr').append( $('<th />', {text : 'Date of purchase'}) );
@@ -1014,7 +1014,7 @@ $(document).ready(function () {
             "columns": [
                 {"data": "id"},
                 {"data": "product.name"},
-                {"data": "merchant.name"},
+                {"data": "canteen.name"},
                 {"data": "weight"},
                 {"data": "purity"},
                 {"data": "dop"}
@@ -1033,7 +1033,7 @@ $(document).ready(function () {
                     url: '/api/stocks',
                     data: function(d){
                         d.product_id = $("#DTE_Field_product_id").val();
-                        d.merchant_id= $("#DTE_Field_merchant_id").val();
+                        d.canteen_id= $("#DTE_Field_canteen_id").val();
                         d.weight= $("#DTE_Field_weight").val();
                         d.purity= $("#DTE_Field_purity").val();
                         d.dop= $("#DTE_Field_dop").val();
@@ -1057,7 +1057,7 @@ $(document).ready(function () {
                     data: function(d){
                         d.id = row_id;
                         d.product_id = $("#DTE_Field_product_id").val();
-                        d.merchant_id= $("#DTE_Field_merchant_id").val();
+                        d.canteen_id= $("#DTE_Field_canteen_id").val();
                         d.weight= $("#DTE_Field_weight").val();
                         d.purity= $("#DTE_Field_purity").val();
                         d.dop= $("#DTE_Field_dop").val();
@@ -1106,8 +1106,8 @@ $(document).ready(function () {
                 name: "product_id",
                 type: "select"
             }, {
-                label: "Merchant:",
-                name: "merchant_id",
+                label: "Canteen:",
+                name: "canteen_id",
                 type: "select"
             }, {
                 label: "Weight:",
@@ -1151,23 +1151,23 @@ $(document).ready(function () {
             success: function (response) {
                 response = $.parseJSON(response);
                 var stock_product = [];
-                var stock_merchant = [];
+                var stock_canteen = [];
                 var products = response['data']['products'];
-                var merchants = response['data']['merchants'];
+                var canteens = response['data']['canteens'];
 
                 for (var i = 0; i < products.length; i++) {
                     stock_product.push({label: products[i]['id'] + ' - ' + products[i]['name'], value: products[i]['id']});
                 }
 
-                for (var i = 0; i < merchants.length; i++) {
-                    stock_merchant.push({label: merchants[i]['id'] + ' - ' + merchants[i]['name'], value: merchants[i]['id']});
+                for (var i = 0; i < canteens.length; i++) {
+                    stock_canteen.push({label: canteens[i]['id'] + ' - ' + canteens[i]['name'], value: canteens[i]['id']});
                 }
 
                 editor.field('product_id').update(stock_product);
-                editor.field('merchant_id').update(stock_merchant);
+                editor.field('canteen_id').update(stock_canteen);
 
             }, error: function () {
-                $.notify('There was an error fetching product & merchant data.');
+                $.notify('There was an error fetching product & canteen data.');
             }
         });
 

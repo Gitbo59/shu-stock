@@ -12,7 +12,7 @@ require_once __DIR__ . '/../controllers/StockController.php';
 require_once __DIR__ . '/../controllers/ProductController.php';
 require_once __DIR__ . '/../controllers/RateController.php';
 require_once __DIR__ . '/../controllers/TableController.php';
-require_once __DIR__ . '/../controllers/MerchantController.php';
+require_once __DIR__ . '/../controllers/CanteenController.php';
 require_once __DIR__ . '/../controllers/ItemsSoldController.php';
 
 class WebRoutes extends Route
@@ -69,8 +69,8 @@ class WebRoutes extends Route
             case 'products':
                 ProductController::index();
                 break;
-            case 'merchants':
-                MerchantController::index();
+            case 'canteens':
+                CanteenController::index();
                 break;
             case 'items_sold':
                 ItemsSoldController::index();

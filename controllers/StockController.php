@@ -3,7 +3,7 @@
 require_once 'Controller.php';
 require_once __DIR__ . '/../model/Stock.php';
 require_once __DIR__ . '/../model/Product.php';
-require_once __DIR__ . '/../model/Merchant.php';
+require_once __DIR__ . '/../model/Canteen.php';
 require_once __DIR__ . '/../helpers/ValidateParams.php';
 
 
@@ -21,9 +21,9 @@ class StockController extends Controller
             $product = new Product();
             $product = $product->show($stock['product_id']);
             $stock['product'] =  $product;
-            $merchant = new Merchant();
-            $merchant = $merchant->show($stock['merchant_id']);
-            $stock['merchant'] =  $merchant;
+            $canteen = new Canteen();
+            $canteen = $canteen->show($stock['canteen_id']);
+            $stock['canteen'] =  $canteen;
             array_shift($stocks);
             array_push($stocks, $stock);
         }
@@ -42,7 +42,7 @@ class StockController extends Controller
             http_response_code(422);
             echo json_encode($d);
         }else{
-            $data['data'] = ['weight' => $stock['weight'], 'purity' => $stock['purity'], 'merchant_id' => $stock['merchant_id'], 'product_id' => $stock['product_id'], 'dop' => $stock['dop']];
+            $data['data'] = ['weight' => $stock['weight'], 'purity' => $stock['purity'], 'canteen_id' => $stock['canteen_id'], 'product_id' => $stock['product_id'], 'dop' => $stock['dop']];
 
             header('Content-type: application/json');
             echo json_encode($data);
@@ -65,9 +65,9 @@ class StockController extends Controller
             $result = false;
             $d['product_id'] = ['The product id id must be a integer value'];
         }
-        if (!ValidateParams::validateInteger($data['merchant_id'])) {
+        if (!ValidateParams::validateInteger($data['canteen_id'])) {
             $result = false;
-            $d['merchant_id'] = ['The merchant id id must be a integer value'];
+            $d['canteen_id'] = ['The canteen id id must be a integer value'];
         }
         if (!ValidateParams::dateTime($data['dop'])) {
             $result = false;
@@ -104,9 +104,9 @@ class StockController extends Controller
             $result = false;
             $d['purity'] = ['The purity must be a integer value'];
         }
-        if (!ValidateParams::validateInteger($data['merchant_id'])) {
+        if (!ValidateParams::validateInteger($data['canteen_id'])) {
             $result = false;
-            $d['merchant_id'] = ['The merchant id id must be a integer value'];
+            $d['canteen_id'] = ['The canteen id id must be a integer value'];
         }
         if (!ValidateParams::dateTime($data['dop'])) {
             $result = false;
@@ -148,10 +148,10 @@ class StockController extends Controller
     public static function info(){
         $product = new Product();
         $products = $product->get();
-        $merchant = new Merchant();
-        $merchants = $merchant->get();
+        $canteen = new Canteen();
+        $canteens = $canteen->get();
         $data['data']['products'] = $products;
-        $data['data']['merchants'] = $merchants;
+        $data['data']['canteens'] = $canteens;
         echo json_encode($data);
     }
 }

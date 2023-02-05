@@ -2,7 +2,7 @@
 
 require_once 'Model.php';
 
-class Merchant extends Model
+class Canteen extends Model
 {
     function count()
     {

@@ -1,10 +1,10 @@
 <?php
 
 require_once 'Controller.php';
-require_once __DIR__ . '/../model/Merchant.php';
+require_once __DIR__ . '/../model/Canteen.php';
 require_once __DIR__ . '/../helpers/ValidateParams.php';
 
-class MerchantController extends Controller
+class CanteenController extends Controller
 {
     public static function index(){
         $page = 'table';
@@ -12,30 +12,30 @@ class MerchantController extends Controller
     }
 
     public static function get(){
-        $merchant = new Merchant;
-        $merchants = $merchant->get();
-        $data['data'] = $merchants;
+        $canteen = new Canteen;
+        $canteens = $canteen->get();
+        $data['data'] = $canteens;
         echo json_encode($data);
     }
 
     public static function show($id)
     {
-        $merchant = new Merchant();
-        $merchant = $merchant->show($id);
-        if($merchant == false){
-            $d = ['merchant' => ['No merchant found with this id.']];
+        $canteen = new Canteen();
+        $canteen = $canteen->show($id);
+        if($canteen == false){
+            $d = ['canteen' => ['No canteen found with this id.']];
             header('Content-type: application/json');
             http_response_code(422);
             echo json_encode($d);
         }else{
-            $data['data'] = ['name' => $merchant['name'], 'phone' => $merchant['phone'], 'address' => $merchant['address'], 'email' => $merchant['email']];
+            $data['data'] = ['name' => $canteen['name'], 'phone' => $canteen['phone'], 'address' => $canteen['address'], 'email' => $canteen['email']];
             header('Content-type: application/json');
             echo json_encode($data);
         }
     }
 
     public static function insert($data){
-        $merchant = new Merchant();
+        $canteen = new Canteen();
         $result = true;
         $d = [];
         if (!ValidateParams::name($data['name'])) {
@@ -55,14 +55,14 @@ class MerchantController extends Controller
             $d['phone'] = ['The phone must not be greater than 15 digits.'];
         }
         if($result == true){
-            $merchant = $merchant->insert($data);
-            if ($merchant == false) {
-                $d = ['merchant' => ['There was an error inserting merchant.']];
+            $canteen = $canteen->insert($data);
+            if ($canteen == false) {
+                $d = ['canteen' => ['There was an error inserting canteen.']];
                 header('Content-type: application/json');
                 http_response_code(422);
                 echo json_encode($d);
             } else {
-                $d = ['merchant' => ['Merchant has been successfully added.']];
+                $d = ['canteen' => ['Canteen has been successfully added.']];
                 header('Content-type: application/json');
                 echo json_encode($d);
             }
@@ -74,7 +74,7 @@ class MerchantController extends Controller
     }
 
     public static function update($data){
-        $merchant = new Merchant();
+        $canteen = new Canteen();
         $result = true;
         $d = [];
         if (!ValidateParams::name($data['name'])) {
@@ -94,14 +94,14 @@ class MerchantController extends Controller
             $d['phone'] = ['The phone must not be greater than 15 digits.'];
         }
         if($result == true){
-            $merchant = $merchant->update($data);
-            if ($merchant == false) {
-                $d = ['merchant' => ['There was an error updating content.']];
+            $canteen = $canteen->update($data);
+            if ($canteen == false) {
+                $d = ['canteen' => ['There was an error updating content.']];
                 header('Content-type: application/json');
                 http_response_code(422);
                 echo json_encode($d);
             } else {
-                $d = ['merchant' => ['Information has been successfully updated.']];
+                $d = ['canteen' => ['Information has been successfully updated.']];
                 header('Content-type: application/json');
                 echo json_encode($d);
             }
@@ -113,13 +113,13 @@ class MerchantController extends Controller
     }
 
     public static function delete($id){
-        $merchant = new Merchant();
-        if($merchant->delete($id)){
-            $d = ['merchant' => ['Merchant has been successfully deleted.']];
+        $canteen = new Canteen();
+        if($canteen->delete($id)){
+            $d = ['canteen' => ['Canteen has been successfully deleted.']];
             header('Content-type: application/json');
             echo json_encode($d);
         }else{
-            $d = ['merchant' => ['There was an error deleting merchant.']];
+            $d = ['canteen' => ['There was an error deleting canteen.']];
             header('Content-type: application/json');
             http_response_code(422);
             echo json_encode($d);

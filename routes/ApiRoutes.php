@@ -84,15 +84,15 @@ class ApiRoutes extends Route
                 else
                     self::response(404, ["message"=> "Page not found!"]);
                 break;
-            case 'merchants':
+            case 'canteens':
             if(self::$method == 'GET')
-                MerchantController::get();
+                CanteenController::get();
             else if(self::$method == 'POST')
-                MerchantController::insert(self::$data);
+                CanteenController::insert(self::$data);
             else if(self::$method == 'PATCH')
-                MerchantController::update(self::$data);
+                CanteenController::update(self::$data);
             else if(self::$method == 'DELETE')
-                MerchantController::delete(self::$data['id']);
+                CanteenController::delete(self::$data['id']);
             else
                 self::response(404, ["message"=> "Page not found!"]);
             break;

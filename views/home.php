@@ -49,7 +49,7 @@
 									<small>(Info)</small>
 								</h3>
 								<p><a href="/customers">Customers</a>: This page is for modifying customer records.</p>					
-								<p><a href="/merchants">Canteens</a>: This page is for modifying canteen records.</p>
+								<p><a href="/canteens">Canteens</a>: This page is for modifying canteen records.</p>
 								<?php 
 								if($_SESSION['admin'] == 1){
 								?>
