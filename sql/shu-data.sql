@@ -231,7 +231,14 @@ CREATE TABLE `transactions` (
 
 INSERT INTO `transactions` (`id`, `weight`, `purity`, `rate_id`) VALUES
 (1, 12, 22, 1),
-(2, 13, 23, 1);
+(2, 12, 22, 2),
+(3, 12, 22, 3),
+(4, 12, 22, 1),
+(5, 12, 22, 1),
+(6, 12, 22, 1),
+(7, 12, 22, 1),
+(8, 12, 22, 1),
+(9, 13, 23, 1);
 
 -- --------------------------------------------------------
 
@@ -244,22 +251,23 @@ CREATE TABLE `users` (
   `employee_id` int(11) NOT NULL,
   `email` varchar(120) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `admin` tinyint(4) NOT NULL DEFAULT '0'
+  `admin` tinyint(4) NOT NULL DEFAULT '0',
+  `staff` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `employee_id`, `email`, `password`, `admin`) VALUES
-(1, 1, 'employee01@mail.com', 'password', 1),
-(2, 2, 'employee02@mail.com', 'secret', 0),
-(3, 3, 'employee03@mail.com', 'secret', 1),
-(4, 4, 'employee04@mail.com', 'secret', 0),
-(5, 5, 'employee05@mail.com', 'secret', 1),
-(6, 6, 'employee06@mail.com', 'secret', 0),
-(7, 7, 'employee07@mail.com', 'secret', 1),
-(8, 8, 'employee08@mail.com', 'secret', 0);
+INSERT INTO `users` (`id`, `employee_id`, `email`, `password`, `admin`, `staff`) VALUES
+(1, 1, 'employee01@mail.com', 'password', 1, 0),
+(2, 2, 'employee02@mail.com', 'secret', 0, 0),
+(3, 3, 'employee03@mail.com', 'secret', 0, 1),
+(4, 4, 'employee04@mail.com', 'secret', 0, 0),
+(5, 5, 'employee05@mail.com', 'secret', 1, 0),
+(6, 6, 'employee06@mail.com', 'secret', 0, 0),
+(7, 7, 'employee07@mail.com', 'secret', 1, 0),
+(8, 8, 'employee08@mail.com', 'secret', 0, 0);
 
 --
 -- Indexes for dumped tables

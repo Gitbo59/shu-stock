@@ -15,4 +15,10 @@ class Auth
             return true;
         return false;   	
     }
+
+    public static function isStaff(){
+        if($_SESSION['staff'] == 1)
+           return true;
+       return false;   	
+   }
 }

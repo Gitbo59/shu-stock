@@ -4,7 +4,7 @@ $(document).ready(function () {
     if (location.pathname == '/customers') {
 
         $('.page-header').html('Customers');
-        $('.panel-heading').html('Add, Edit, Delete customers');
+       /*  $('.panel-heading').html('Add, Edit, Delete customers'); */
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Name'}) );
