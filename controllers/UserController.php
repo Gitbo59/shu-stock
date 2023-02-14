@@ -38,7 +38,7 @@ class UserController extends Controller
             http_response_code(422);
             echo json_encode($d);
         }else{
-            $data['data'] = ['id' => $user['id'], 'email' => $user['email'], 'admin' => $user['admin'], 'admin' => $user['staff']];
+            $data['data'] = ['id' => $user['id'], 'email' => $user['email'], 'admin' => $user['admin'], 'staff' => $user['staff']];
             header('Content-type: application/json');
             echo json_encode($data);
         }
