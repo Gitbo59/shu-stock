@@ -145,7 +145,7 @@ INSERT INTO `products` (`id`, `name`) VALUES
 -- Table structure for table `rates`
 --
 
-CREATE TABLE `rates` (
+/* CREATE TABLE `rates` (
   `id` int(11) NOT NULL,
   `rate` decimal(13,4) UNSIGNED NOT NULL,
   `date` date NOT NULL
@@ -165,7 +165,7 @@ INSERT INTO `rates` (`id`, `rate`, `date`) VALUES
 (7, '29765.3422', '2017-02-07'),
 (8, '29991.4234', '2017-02-08'),
 (9, '29866.7660', '2017-02-09'),
-(10, '28652.9912', '2017-02-10');
+(10, '28652.9912', '2017-02-10'); */
 
 -- --------------------------------------------------------
 
@@ -220,8 +220,8 @@ INSERT INTO `stocks` (`id`, `product_id`, `canteen_id`, `weight`, `purity`, `dop
 
 CREATE TABLE `transactions` (
   `id` int(11) NOT NULL,
-  `weight` int(10) UNSIGNED NOT NULL,
-  `purity` int(10) UNSIGNED NOT NULL,
+  `name` varchar(120) NOT NULL,
+  `cost` decimal(2,2) NOT NULL,
   `rate_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -229,16 +229,14 @@ CREATE TABLE `transactions` (
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `weight`, `purity`, `rate_id`) VALUES
-(1, 12, 22, 1),
-(2, 12, 22, 2),
-(3, 12, 22, 3),
-(4, 12, 22, 1),
-(5, 12, 22, 1),
-(6, 12, 22, 1),
-(7, 12, 22, 1),
-(8, 12, 22, 1),
-(9, 13, 23, 1);
+INSERT INTO `transactions` (`id`, `name`, `cost`, `rate_id`) VALUES
+(1, "sandwich", 20.20, 1),
+(1, "sandwich", 21.23, 1),
+(1, "sandwich", 22.15, 1),
+(1, "sandwich", 20.20, 1),
+(1, "sandwich", 10.10, 1),
+(1, "sandwich", 1.13, 1),
+(1, "sandwich", 0.99, 1),;
 
 -- --------------------------------------------------------
 

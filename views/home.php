@@ -104,8 +104,8 @@
                         </div>
                     </a>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
+            <!-- </div> -->
+            <!-- <div class="col-lg-3 col-md-6"> -->
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
@@ -149,8 +149,8 @@
                     </a>
                 </div>
             </div> -->
-            <div class="col-lg-3 col-md-6">
-                <!-- <div class="panel panel-primary">
+            <!-- <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
@@ -163,10 +163,111 @@
                         </div>
                     </div>
                     
-                </div> -->
+                </div>
+            </div> -->
+            <!-- <div CLASS="col-lg-5">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <i class="fa fa-credit-card fa-fw"></i> Latest Transactions
+                    </div>
+                    
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Weight</th>
+                                    <th>Purity</th>
+                                    <th>Rate</th>
+                                </tr>
+                                </thead>
+                                <tbody class="latest-transactions">
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                       
+                    </div>
+                    <a href="/transactions">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Transactions</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                    
+                </div>
+                
+            </div> -->
+            <?php 
+			}
+			?>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-cutlery fa-5x"></i>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <a href="/canteens">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Canteens</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            <!-- </div>
+            <div class="col-lg-3 col-md-6"> -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-shopping-bag fa-5x"></i>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <a href="/products">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Products</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            <!-- </div>
+            <div class="col-lg-3 col-md-6"> -->
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-archive fa-5x"></i>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <a href="/stocks">
+                        <div class="panel-footer">
+                            <span class="pull-left">View Stock</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
             </div>
             <div CLASS="col-lg-5">
+                
+                <?php 
+                if($_SESSION['admin'] || $_SESSION['staff'] == 1){
+                ?>
                 <div class="panel panel-primary">
+                
                     <div class="panel-heading">
                         <i class="fa fa-credit-card fa-fw"></i> Latest Transactions
                     </div>
@@ -198,112 +299,41 @@
                     </a>
                     <!-- /.panel-body -->
                 </div>
+                <?php 
+                }
+                ?>
                 <!-- /.panel -->
-            </div>
-            <?php 
-			}
-			?>
-            <div class="col-lg-3 col-md-6">
+                <!-- <div CLASS="col-lg-10 col-md-6"> -->
+                <!-- <div class="panel panel-default"> -->
                 <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-cutlery fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div id="canteens" class="huge"></div>
-                                <div>Canteens</div>
-                            </div>
-                        </div>
+                    <!-- <div class="panel-heading">
+                        <i class="fa fa-bar-chart fa-fw"></i> Live Rates(INR)
+                    </div> -->
+                
+                    <div class="panel-body">
+                        <img src="https://www.shu.ac.uk/-/media/home/myhallam/landing-pages/feature-images/campus-photos/2021-campus-feature.jpg?iar=0&hash=D34D95B307DC7E19EBE352834965131C" alt="alternatetext" width="605" height="400"> 
                     </div>
-                    <a href="/canteens">
+                    <a href="https://www.shu.ac.uk/myhallam">
                         <div class="panel-footer">
-                            <span class="pull-left">View Canteens</span>
+                            <span class="pull-left">My Hallam</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>
                     </a>
                 </div>
+                <!-- </div> -->
+                
+                
+
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-shopping-bag fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div id="products" class="huge"></div>
-                                <div>Products</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="/products">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Products</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-archive fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div id="stock" class="huge"></div>
-                                <div>Stock</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="/stocks">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Stock</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            
+            
         </div>
         <!-- /.row -->
-       <!--  <div class="row">
-            <div CLASS="col-lg-7">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bar-chart fa-fw"></i> Live Rates(INR)
-                    </div>
-                    
-                    <div class="panel-body">
-                        <div class="list-group">
-                            <a class="list-group-item">
-                                1 USD
-                                <span id="usd" class="pull-right text-muted">
-                                    </span>
-                            </a>
-                            <a class="list-group-item">
-                                Gold 10g
-                                <span id="au" class="pull-right text-muted">
-                                    </span>
-                            </a>
-                            <a class="list-group-item">
-                                Silver 1KG
-                                <span id="ag" class="pull-right text-muted">
-                                    </span>
-                            </a>
-                        </div>
-                    </div>
-                    
-                </div>
-               
-            </div> -->
+        <!-- <div class="row"> -->
             
             
-        </div>
+        <!-- </div> -->
         
     </div>
     <!-- /.container-fluid -->

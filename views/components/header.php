@@ -7,6 +7,6 @@
         <span class="icon-bar"></span>
     </button>
     <a class="navbar-brand" href="/">SHU STOCK HUB</a>
-    <!-- <a class="navbar-brand" href="/"><img src="favicon-32x32.png"></a> --> 
+     
 </div>
 <!-- /.navbar-header -->
