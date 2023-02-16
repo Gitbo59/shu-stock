@@ -90,4 +90,11 @@ table.dataTable {
 			}
 		}
 	}
+
+	tr.dte-inlineAdd {
+		td,
+		th {
+			vertical-align: top;
+		}
+	}
 }

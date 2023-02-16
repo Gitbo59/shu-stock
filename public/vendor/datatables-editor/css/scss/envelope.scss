@@ -50,42 +50,14 @@ div.DTED_Envelope_Wrapper {
 		}
 
 		div.DTED_Envelope_Close {
-			position: absolute;
-			top: 16px;
-			right: 10px;
-			width: 18px;
-			height: 18px;
-			cursor: pointer;
-			*cursor: hand;
-			z-index: 12;
-			text-align: center;
-			font-size: 12px;
-
-			background: #F8F8F8;
-			background: -webkit-gradient(linear, center bottom, center top, from(#CCC), to(white));
-			background: -moz-linear-gradient(top, white, #CCC);
-			background: linear-gradient(to bottom, white, #CCC);
-			text-shadow: 0 1px 0 white;
-			border: 1px solid #999;
-			border-radius: 2px;
-			-moz-border-radius: 2px;
-			-webkit-border-radius: 2px;
-			box-shadow: 0px 0px 1px #999;
-			-moz-box-shadow: 0px 0px 1px #999;
-			-webkit-box-shadow: 0px 0px 1px #999;
+			@include close-icon();
 		}
 	}
 }
 
 
 div.DTED_Envelope_Background {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 10;
-	@include radial-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4) );
+	@include overlay-background();
 }
 
 

@@ -11,7 +11,7 @@
             <div class="col-lg-6">
                 <div class="panel panel-green">
                     <div class="panel-heading">
-                        Security
+                       Account Security
                     </div>
                     <div class="panel-body">
                         <div class="col-lg-6">
@@ -48,7 +48,7 @@
             <div class="col-lg-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        Employee Information
+                        Account Information
                     </div>
                     <div class="panel-body">
                         <div class="col-lg-6">

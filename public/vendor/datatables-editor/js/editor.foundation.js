@@ -1,5 +1,5 @@
 /*! Foundation integration for DataTables' Editor
- * ©2015 SpryMedia Ltd - datatables.net/license
+ * © SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
@@ -13,11 +13,19 @@
 		// CommonJS
 		module.exports = function (root, $) {
 			if ( ! root ) {
+				// CommonJS environments without a window global must pass a
+				// root. This will give an error otherwise
 				root = window;
 			}
 
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net-zf')(root, $).$;
+			if ( ! $ ) {
+				$ = typeof window !== 'undefined' ? // jQuery's factory checks for a global window
+					require('jquery') :
+					require('jquery')( root );
+			}
+
+			if ( ! $.fn.dataTable ) {
+				require('datatables.net-zf')(root, $);
 			}
 
 			if ( ! $.fn.dataTable.Editor ) {
@@ -35,6 +43,8 @@
 'use strict';
 var DataTable = $.fn.dataTable;
 
+
+var Editor = DataTable.Editor;
 
 /*
  * Set the default display controller to be our foundation control 
@@ -60,7 +70,8 @@ $.extend( true, $.fn.dataTable.Editor.classes, {
 		"msg-error":     "label alert"
 	},
 	form: {
-		button:  "button small"
+		button:  "button small",
+		buttonInternal:  "button small"
 	}
 } );
 
@@ -69,91 +80,73 @@ $.extend( true, $.fn.dataTable.Editor.classes, {
  * Foundation display controller - this is effectively a proxy to the Foundation
  * modal control.
  */
-var self;
+var shown = false;
+var reveal;
+
+const dom = {
+	content: $(
+		'<div class="reveal reveal-modal DTED" data-reveal></div>'
+	),
+	close: $('<button class="close close-button">&times;</div>')
+};
 
 DataTable.Editor.display.foundation = $.extend( true, {}, DataTable.Editor.models.displayController, {
-	/*
-	 * API methods
-	 */
-	"init": function ( dte ) {
-		self._dom.content = $(
-			'<div class="reveal reveal-modal" data-reveal />'
-		);
-		self._dom.close = $('<button class="close close-button">&times;</div>');
+	init: function ( dte ) {
+		if (! reveal) {
+			reveal = new window.Foundation.Reveal( dom.content, {
+				closeOnClick: false
+			} );
+		}
 
-		self._dom.close.click( function () {
-			self._dte.close('icon');
-		} );
-
-		return self;
+		return DataTable.Editor.display.foundation;
 	},
 
-	"open": function ( dte, append, callback ) {
-		if ( self._shown ) {
+	open: function ( dte, append, callback ) {
+		var content = dom.content;
+		content.children().detach();
+		content.append( append );
+		content.prepend( dom.close );
+
+		dom.close
+			.attr('title', dte.i18n.close)
+			.off('click.dte-zf')
+			.on('click.dte-zf', function () {
+				dte.close('icon');
+			});
+
+		$(document)
+			.off('click.dte-zf')
+			.on('click.dte-zf', 'div.reveal-modal-bg, div.reveal-overlay', function (e) {
+				if ( $(e.target).closest(dom.content).length ) {
+					return;
+				}
+				dte.background();
+			} );
+
+		if ( shown ) {
 			if ( callback ) {
 				callback();
 			}
 			return;
 		}
 
-		self._dte = dte;
-		self._shown = true;
+		shown = true;
 
-		var content = self._dom.content;
-		content.children().detach();
-		content.append( append );
-		content.prepend( self._dom.close );
-
-		$(self._dom.content)
-			.one('opened.fndtn.reveal', function () {
+		$(dom.content)
+			.one('open.zf.reveal', function () {
 				if ( callback ) {
 					callback();
 				}
-			})
-			.one('closed.fndtn.reveal', function () {
-				self._shown = false;
 			});
 
-		if ( window.Foundation && window.Foundation.Reveal ) {
-			// Foundation 6
-			if ( ! self._reveal ) {
-				self._reveal = new window.Foundation.Reveal( self._dom.content, {
-					closeOnClick: false
-				} );
-			}
-
-			$(self._dom.content).appendTo('body');
-			self._reveal.open();
-		}
-		else {
-			// Foundation 5
-			$(self._dom.content).foundation( 'reveal','open' );
-		}
-
-		$(document).on('click.dte-zf', 'div.reveal-modal-bg, div.reveal-overlay', function () {
-			self._dte.background();
-		} );
+		reveal.open();
 	},
 
-	"close": function ( dte, callback ) {
-		if ( !self._shown ) {
-			if ( callback ) {
-				callback();
-			}
-			return;
+	close: function ( dte, callback ) {
+		if (shown) {
+			reveal.close();
+			shown = false;
 		}
-
-		if ( self._reveal ) {
-			self._reveal.close();
-		}
-		else {
-			$(self._dom.content).foundation( 'reveal', 'close' );
-		}
-
-		$(document).off( 'click.dte-zf' );
-
-		self._dte = dte;
-		self._shown = false;
 
 		if ( callback ) {
 			callback();
@@ -161,20 +154,10 @@ DataTable.Editor.display.foundation = $.extend( true, {}, DataTable.Editor.model
 	},
 
 	node: function ( dte ) {
-		return self._dom.content[0];
-	},
-
-
-	/*
-	 * Private properties
-	 */
-	 "_shown": false,
-	"_dte": null,
-	"_dom": {}
+		return dom.content[0];
+	}
 } );
 
-self = DataTable.Editor.display.foundation;
 
-
-return DataTable.Editor;
+return Editor;
 }));

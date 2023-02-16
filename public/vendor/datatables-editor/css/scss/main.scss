@@ -4,7 +4,7 @@
 // Most of the styles for display of the main form come from the display
 // controller (lightbox and envelope are the two built in options).
 div.DTE_Body {
-	padding: 50px 0; // space for hte header and footer which are position: absolute
+	padding: 52px 0; // space for hte header and footer which are position: absolute
 	
 	div.DTE_Body_Content {
 		position: relative;
@@ -17,10 +17,9 @@ div.DTE_Body {
 
 		div.DTE_Field {
 			position: relative;
-			zoom: 1;
 			
 			clear: both;
-			padding: 5px 20%;
+			padding: 5px 10%;
 			border: 1px solid transparent;
 
 			&:after {
@@ -39,28 +38,20 @@ div.DTE_Body {
 
 			>label {
 				float: left;
-				width: 40%;
-				padding-top: 6px;
+				width: 33%;
+				padding-top: 3px;
 			}
 
 			>div.DTE_Field_Input {
 				float: right;
-				width: 60%;
+				width: 66%;
 			}
 
 			// Field in error state
 			&.DTE_Field_StateError { }
 
 			&.full {
-				padding: 5px 0 5px 20%;
-
-				>label {
-					width: 30%;
-				}
-
-				>div.DTE_Field_Input {
-					width: 70%;
-				}
+				padding: 5px 0 5px 10%;
 			}
 
 			&.block {
@@ -156,7 +147,6 @@ and (max-width : 580px) {
 		div.DTE_Body_Content {
 			div.DTE_Field {
 				position: relative;
-				zoom: 1;
 				
 				clear: both;
 				padding: 5px 0;
@@ -170,6 +160,8 @@ and (max-width : 580px) {
 				>div.DTE_Field_Input {
 					float: none;
 					width: auto;
+					margin-top: 4px;
+					margin-bottom: 6px;
 				}
 
 				&.full,

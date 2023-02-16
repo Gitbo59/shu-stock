@@ -1434,8 +1434,8 @@ $(document).ready(function () {
         });
     }
     else if (location.pathname == '/') {
-        function rates(){
-            $.ajax({
+        /*function rates(){
+             $.ajax({
                 url: 'http://www.apilayer.net/api/live?access_key=YOUR_ACCESS_KEY_HERE&format=1',
                 type: 'GET',
                 success: function (response) {
@@ -1452,7 +1452,7 @@ $(document).ready(function () {
                     $.notify('There was an error fetching market data.');
                 }
             });
-        }
+        } */
         $.ajax({
             url: '/api/tables',
             type: 'GET',

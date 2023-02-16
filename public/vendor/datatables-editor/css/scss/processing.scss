@@ -3,7 +3,7 @@ div.DTE {
 	div.DTE_Processing_Indicator {
 		position: absolute;
 		top: 17px;
-		right: 9px;
+		right: 42px;
 		height: 2em;
 		width: 2em;
 		z-index: 20;
@@ -19,6 +19,16 @@ div.DTE {
 		div.DTE_Processing_Indicator {
 			display: block;
 		}
+
+		div.DTE_Field div.DTE_Processing_Indicator {
+			display: none;
+		}
+	}
+
+	div.DTE_Field div.DTE_Processing_Indicator {
+		top: 13px;
+		right: 0;
+		font-size: 8px;
 	}
 
 	&.DTE_Inline {

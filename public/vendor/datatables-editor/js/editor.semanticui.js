@@ -1,5 +1,5 @@
-/*! Bootstrap integration for DataTables' Editor
- * ©2015 SpryMedia Ltd - datatables.net/license
+/*! Semantic UI integration for DataTables' Editor
+ * © SpryMedia Ltd - datatables.net/license
  */
 
 (function( factory ){
@@ -13,11 +13,19 @@
 		// CommonJS
 		module.exports = function (root, $) {
 			if ( ! root ) {
+				// CommonJS environments without a window global must pass a
+				// root. This will give an error otherwise
 				root = window;
 			}
 
-			if ( ! $ || ! $.fn.dataTable ) {
-				$ = require('datatables.net-se')(root, $).$;
+			if ( ! $ ) {
+				$ = typeof window !== 'undefined' ? // jQuery's factory checks for a global window
+					require('jquery') :
+					require('jquery')( root );
+			}
+
+			if ( ! $.fn.dataTable ) {
+				require('datatables.net-se')(root, $);
 			}
 
 			if ( ! $.fn.dataTable.Editor ) {
@@ -35,6 +43,9 @@
 'use strict';
 var DataTable = $.fn.dataTable;
 
+
+
+var Editor = DataTable.Editor;
 
 /*
  * Set the default display controller to be Semantic UI modal
@@ -57,6 +68,7 @@ $.extend( true, $.fn.dataTable.Editor.classes, {
 	"form": {
 		"tag": "ui form",
 		"button": "ui button",
+		"buttonInternal": "ui button",
 		"content": 'DTE_Form_Content'
 	},
 	"field": {
@@ -101,53 +113,51 @@ $.extend( true, DataTable.ext.buttons, {
 	}
 } );
 
+DataTable.Editor.fieldTypes.datatable.tableClass = 'ui table';
+
 /*
  * Bootstrap display controller - this is effectively a proxy to the Bootstrap
  * modal control.
  */
 
-var self;
+// Single shared model for all Editor instances
+const dom = {
+	modal: $('<div class="ui modal DTED"></div>'),
+	close: $('<i class="close icon"/>')
+}
+let shown = false;
+let lastAppend;
 
 DataTable.Editor.display.semanticui = $.extend( true, {}, DataTable.Editor.models.displayController, {
 	/*
 	 * API methods
 	 */
-	"init": function ( dte ) {
-		// init can be called multiple times (one for each Editor instance), but
-		// we only support a single construct here (shared between all Editor
-		// instances)
-		if ( ! self._dom.modal ) {
-			self._dom.modal = $('<div class="ui modal"></div>');
-
-			self._dom.close = $('<i class="close icon"/>')
-				.click( function (e) {
-					self._dte.close('icon');
-					return false;
+	init: function ( dte ) {
+		// Make select lists semantic ui dropdowns if possible
+		if ($.fn.dropdown) {
+			dte.on( 'displayOrder.dtesu open.dtesu', function ( e, display, action, form ) {
+				$.each( dte.s.fields, function ( key, field ) {
+					$('select', field.node())
+						.addClass('fluid')
+						.dropdown();
 				} );
-
-			$(document).on('click', 'div.ui.dimmer.modals', function (e) {
-				if ( $(e.target).hasClass('modal') && self._shown ) {
-					self._dte.background();
-				}
 			} );
 		}
 
-		return self;
+		return DataTable.Editor.display.semanticui;
 	},
 
-	"open": function ( dte, append, callback ) {
-		if ( self._shown ) {
-			if ( callback ) {
-				callback();
-			}
-			return;
+	open: function ( dte, append, callback ) {
+		var modal = dom.modal;
+		var appendChildren = $(append).children();
+
+		// Because we can't use a single element, we need to insert the existing
+		// children back into their previous host so that can be reused later
+		if (lastAppend) {
+			modal.children().appendTo(lastAppend);
 		}
 
-		self._dte = dte;
-		self._shown = true;
-
-		var modal = self._dom.modal;
-		var appendChildren = $(append).children();
+		lastAppend = append;
 
 		// Clean up any existing elements and then insert the elements to
 		// display. In Semantic UI we need to have the header, content and
@@ -161,18 +171,41 @@ DataTable.Editor.display.semanticui = $.extend( true, {}, DataTable.Editor.model
 			.append( appendChildren )
 			.prepend( modal.children('.header') ) // order is important
 			.addClass( append.className )
-			.prepend( self._dom.close );
+			.prepend( dom.close );
 
-		$(self._dom.modal)
-			.appendTo( 'body' )
+		dom.close
+			.attr('title', dte.i18n.close)
+			.off( 'click.dte-se' )
+			.on( 'click.dte-se', function (e) {
+				dte.close('icon');
+				return false;
+			} );
+
+		$(document)
+			.off('click.dte-se')
+			.on('click.dte-se', 'div.ui.dimmer.modals', function (e) {
+				if ( $(e.target).hasClass('dimmer') ) {
+					dte.background();
+				}
+			} );
+
+		if ( shown ) {
+			if ( callback ) {
+				callback();
+			}
+			return;
+		}
+
+		shown = true;
+
+		$(modal)
 			.modal( 'setting', {
-				dimmerSettings: {
-					closable: false
-				},
+				autofocus: false,
+				closable: false,
 				onVisible: function () {
 					// Can only give elements focus when shown
-					if ( self._dte.s.setFocus ) {
-						self._dte.s.setFocus.focus();
+					if ( dte.s.setFocus ) {
+						dte.s.setFocus.focus();
 					}
 
 					if ( callback ) {
@@ -181,27 +214,24 @@ DataTable.Editor.display.semanticui = $.extend( true, {}, DataTable.Editor.model
 				},
 				onHidden: function () {
 					$(append).append( appendChildren );
-					$(this).detach();
-					self._shown = false;
+					shown = false;
 				}
 			} )
 			.modal( 'show' );
 	},
 
-	"close": function ( dte, callback ) {
-		var modal = self._dom.modal;
-
-		if ( !self._shown ) {
+	close: function ( dte, callback ) {
+		if ( ! shown ) {
 			if ( callback ) {
 				callback();
 			}
 			return;
 		}
 
-		modal.modal('hide');
+		dom.modal.modal('hide');
 
-		self._dte = dte;
-		self._shown = false;
+		lastAppend = null;
+		shown = false;
 
 		if ( callback ) {
 			callback();
@@ -209,20 +239,10 @@ DataTable.Editor.display.semanticui = $.extend( true, {}, DataTable.Editor.model
 	},
 
 	node: function ( dte ) {
-		return self._dom.modal[0];
-	},
-
-
-	/*
-	 * Private properties
-	 */
-	 "_shown": false,
-	"_dte": null,
-	"_dom": {}
+		return dom.modal[0];
+	}
 } );
 
-self = DataTable.Editor.display.semanticui;
 
-
-return DataTable.Editor;
+return Editor;
 }));
