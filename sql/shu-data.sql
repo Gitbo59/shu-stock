@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `project5.6`
+-- Database: `shu-stock`
 --
 
 -- --------------------------------------------------------
@@ -120,15 +120,17 @@ INSERT INTO `canteens` (`id`, `name`, `address`, `email`, `phone`) VALUES
 
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
-  `name` varchar(35) NOT NULL
+  `name` varchar(35) NOT NULL,
+  `price` decimal(2,2) NOT NULL,
+  `amount` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `name`) VALUES
-(1, 'Product A'),
+INSERT INTO `products` (`id`, `name`, 'price', 'amount') VALUES
+(1, 'Product A', 300, ''),
 (2, 'Product B'),
 (3, 'Product C'),
 (4, 'Product D'),
@@ -179,7 +181,7 @@ CREATE TABLE `sold_items` (
   `customer_id` int(11) NOT NULL,
   `employee_id` int(11) NOT NULL,
   `transaction_id` int(11) NOT NULL,
-  `price` int(7) NOT NULL,
+  `price` decimal(2,2) NOT NULL,
   `dos` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -188,7 +190,7 @@ CREATE TABLE `sold_items` (
 --
 
 INSERT INTO `sold_items` (`id`, `stock_id`, `customer_id`, `employee_id`, `transaction_id`, `price`, `dos`) VALUES
-(1, 1, 1, 1, 1, 61233, '2017-10-19 03:35:07');
+(1, 1, 1, 1, 1, 3.50, '2017-10-19 03:35:07');
 
 -- --------------------------------------------------------
 
@@ -200,8 +202,8 @@ CREATE TABLE `stocks` (
   `id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `canteen_id` int(11) NOT NULL,
-  `weight` int(11) UNSIGNED NOT NULL,
-  `purity` int(10) UNSIGNED NOT NULL,
+  `price` decimal(2,2) NOT NULL,
+  `amount` int(10) UNSIGNED NOT NULL,
   `dop` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -209,8 +211,8 @@ CREATE TABLE `stocks` (
 -- Dumping data for table `stocks`
 --
 
-INSERT INTO `stocks` (`id`, `product_id`, `canteen_id`, `weight`, `purity`, `dop`) VALUES
-(1, 1, 1, 12, 12, '2017-09-06 00:00:00');
+INSERT INTO `stocks` (`id`, `product_id`, `canteen_id`, `price`, `amount`, `dop`) VALUES
+(1, 1, 1, 12, 12.42, '2017-09-06 00:00:00');
 
 -- --------------------------------------------------------
 

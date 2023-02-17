@@ -4,7 +4,7 @@ $(document).ready(function () {
     if (location.pathname == '/customers') {
 
         $('.page-header').html('Customers');
-       /*  $('.panel-heading').html('Add, Edit, Delete customers'); */
+        $('.panel-heading').html('Add, Edit, Delete customers');
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Name'}) );
@@ -99,7 +99,7 @@ $(document).ready(function () {
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('Customer has been trashed.', 'success');
+                        $.notify('Customer has been deleted.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -142,7 +142,7 @@ $(document).ready(function () {
                     title:  "Edit Customer"
                 },
                 remove: {
-                    title:  "Trash Customer"
+                    title:  "Delete Customer"
                 }
             }
         } );
@@ -152,7 +152,7 @@ $(document).ready(function () {
             { extend: "edit",  className: 'btn btn-default',  editor: editor },
             { extend: "remove", className: 'btn btn-danger', editor: editor,
                 formMessage: function ( e, dt ) {
-                    return 'Are you sure you want to trash the customer?';
+                    return 'Are you sure you want to delete the customer?';
                 }
             }
         ] );
@@ -264,7 +264,7 @@ $(document).ready(function () {
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('Employee has been trashed.', 'success');
+                        $.notify('Employee has been deleted.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -320,7 +320,7 @@ $(document).ready(function () {
                     title:  "Edit Employee"
                 },
                 remove: {
-                    title:  "Trash Employee"
+                    title:  "Delete Employee"
                 }
             }
         } );
@@ -330,7 +330,7 @@ $(document).ready(function () {
             { extend: "edit",  className: 'btn btn-default',  editor: editor },
             { extend: "remove", className: 'btn btn-danger', editor: editor,
                 formMessage: function ( e, dt ) {
-                    return 'Are you sure you want to trash the employee?';
+                    return 'Are you sure you want to delete the employee?';
                 }
             }
         ] );
@@ -433,7 +433,7 @@ $(document).ready(function () {
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('User has been trashed.', 'success');
+                        $.notify('User has been deleted.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -475,7 +475,7 @@ $(document).ready(function () {
                     title:  "Edit User"
                 },
                 remove: {
-                    title:  "Trash User"
+                    title:  "Delete User"
                 }
             }
         } );
@@ -504,7 +504,7 @@ $(document).ready(function () {
             { extend: "edit",  className: 'btn btn-default',  editor: editor },
             { extend: "remove", className: 'btn btn-danger', editor: editor,
                 formMessage: function ( e, dt ) {
-                    return 'Are you sure you want to trash the user?';
+                    return 'Are you sure you want to delete the user?';
                 }
             }
         ] );
@@ -611,7 +611,7 @@ $(document).ready(function () {
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('Canteen has been trashed.', 'success');
+                        $.notify('Canteen has been deleted.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -654,7 +654,7 @@ $(document).ready(function () {
                     title:  "Edit Canteen"
                 },
                 remove: {
-                    title:  "Trash Canteen"
+                    title:  "Delete Canteen"
                 }
             }
         } );
@@ -664,7 +664,7 @@ $(document).ready(function () {
             { extend: "edit",  className: 'btn btn-default',  editor: editor },
             { extend: "remove", className: 'btn btn-danger', editor: editor,
                 formMessage: function ( e, dt ) {
-                    return 'Are you sure you want to trash the canteen?';
+                    return 'Are you sure you want to delete the canteen?';
                 }
             }
         ] );
@@ -759,7 +759,7 @@ $(document).ready(function () {
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('Product has been trashed.', 'success');
+                        $.notify('Product has been deleted.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -789,7 +789,7 @@ $(document).ready(function () {
                     title:  "Edit Product"
                 },
                 remove: {
-                    title:  "Trash Product"
+                    title:  "delete Product"
                 }
             }
         } );
@@ -799,7 +799,7 @@ $(document).ready(function () {
             { extend: "edit",  className: 'btn btn-default',  editor: editor },
             { extend: "remove", className: 'btn btn-danger', editor: editor,
                 formMessage: function ( e, dt ) {
-                    return 'Are you sure you want to trash the employee?';
+                    return 'Are you sure you want to delete the employee?';
                 }
             }
         ] );
@@ -901,7 +901,7 @@ $(document).ready(function () {
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('Transaction has been trashed.', 'success');
+                        $.notify('Transaction has been deleted.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -945,7 +945,7 @@ $(document).ready(function () {
                     title:  "Edit Transaction"
                 },
                 remove: {
-                    title:  "Trash Transaction"
+                    title:  "delete Transaction"
                 }
             }
         } );
@@ -974,7 +974,7 @@ $(document).ready(function () {
             { extend: "edit",  className: 'btn btn-default',  editor: editor },
             { extend: "remove", className: 'btn btn-danger', editor: editor,
                 formMessage: function ( e, dt ) {
-                    return 'Are you sure you want to trash the transaction?';
+                    return 'Are you sure you want to delete the transaction?';
                 }
             }
         ] );
@@ -1084,7 +1084,7 @@ $(document).ready(function () {
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('Stock has been trashed.', 'success');
+                        $.notify('Stock has been deleted.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -1139,7 +1139,7 @@ $(document).ready(function () {
                     title:  "Edit Stock"
                 },
                 remove: {
-                    title:  "Trash Stock"
+                    title:  "Delete Stock"
                 }
             }
         } );
@@ -1176,7 +1176,7 @@ $(document).ready(function () {
             { extend: "edit",  className: 'btn btn-default',  editor: editor },
             { extend: "remove", className: 'btn btn-danger', editor: editor,
                 formMessage: function ( e, dt ) {
-                    return 'Are you sure you want to trash the stock?';
+                    return 'Are you sure you want to delete the stock?';
                 }
             }
         ] );
@@ -1290,7 +1290,7 @@ $(document).ready(function () {
                         delete d.action;
                     },
                     success: function () {
-                        $.notify('Stock has been trashed.', 'success');
+                        $.notify('Stock has been deleted.', 'success');
                         table.ajax.reload();
                     },
                     error: function (response) {
@@ -1347,7 +1347,7 @@ $(document).ready(function () {
                     title:  "Edit Item Sold"
                 },
                 remove: {
-                    title:  "Trash Item Sold"
+                    title:  "Delete Item Sold"
                 }
             }
         } );
@@ -1397,7 +1397,7 @@ $(document).ready(function () {
             { extend: "edit",  className: 'btn btn-default',  editor: editor },
             { extend: "remove", className: 'btn btn-danger', editor: editor,
                 formMessage: function ( e, dt ) {
-                    return 'Are you sure you want to trash the sold item?';
+                    return 'Are you sure you want to delete the sold item?';
                 }
             }
         ] );

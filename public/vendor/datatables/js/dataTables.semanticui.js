@@ -2,18 +2,10 @@
  * ©2011-2015 SpryMedia Ltd - datatables.net/license
  */
 
-/**
- * DataTables integration for Bootstrap 3. This requires Bootstrap 3 and
- * DataTables 1.10 or newer.
- *
- * This file sets the defaults and adds options to DataTables to style its
- * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
- * for further information.
- */
 (function( factory ){
 	if ( typeof define === 'function' && define.amd ) {
 		// AMD
-		define( ['jquery', 'datatables.net'], function ($ ) {
+		define( ['jquery', 'datatables.net'], function ( $ ) {
 			return factory( $, window, document );
 		} );
 	}
@@ -21,14 +13,19 @@
 		// CommonJS
 		module.exports = function (root, $) {
 			if ( ! root ) {
+				// CommonJS environments without a window global must pass a
+				// root. This will give an error otherwise
 				root = window;
 			}
 
-			if ( ! $ || ! $.fn.dataTable ) {
-				// Require DataTables, which attaches to jQuery, including
-				// jQuery if needed and have a $ property so we can access the
-				// jQuery object that is used
-				$ = require('datatables.net')(root, $).$;
+			if ( ! $ ) {
+				$ = typeof window !== 'undefined' ? // jQuery's factory checks for a global window
+					require('jquery') :
+					require('jquery')( root );
+			}
+
+			if ( ! $.fn.dataTable ) {
+				require('datatables.net')(root, $);
 			}
 
 			return factory( $, root, root.document );
@@ -43,10 +40,19 @@
 var DataTable = $.fn.dataTable;
 
 
+
+/**
+ * DataTables integration for FomanticUI (formally SemanticUI)
+ *
+ * This file sets the defaults and adds options to DataTables to style its
+ * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
+ * for further information.
+ */
+
 /* Set the defaults for DataTables initialisation */
 $.extend( true, DataTable.defaults, {
 	dom:
-		"<'ui grid'"+
+		"<'ui stackable grid'"+
 			"<'row'"+
 				"<'eight wide column'l>"+
 				"<'right aligned eight wide column'f>"+
@@ -78,7 +84,7 @@ DataTable.ext.renderer.pageButton.semanticUI = function ( settings, host, idx, b
 	var classes = settings.oClasses;
 	var lang    = settings.oLanguage.oPaginate;
 	var aria = settings.oLanguage.oAria.paginate || {};
-	var btnDisplay, btnClass, counter=0;
+	var btnDisplay, btnClass;
 
 	var attach = function( container, buttons ) {
 		var i, ien, node, button;
@@ -92,7 +98,7 @@ DataTable.ext.renderer.pageButton.semanticUI = function ( settings, host, idx, b
 		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
 			button = buttons[i];
 
-			if ( $.isArray( button ) ) {
+			if ( Array.isArray( button ) ) {
 				attach( container, button );
 			}
 			else {
@@ -136,9 +142,10 @@ DataTable.ext.renderer.pageButton.semanticUI = function ( settings, host, idx, b
 						break;
 				}
 
-				var tag = btnClass.indexOf( 'disabled' ) === -1 ?
-					'a' :
-					'div';
+				var disabled = btnClass.indexOf('disabled') !== -1;
+				var tag = disabled ?
+					'div' :
+					'a';
 
 				if ( btnDisplay ) {
 					node = $('<'+tag+'>', {
@@ -146,10 +153,13 @@ DataTable.ext.renderer.pageButton.semanticUI = function ( settings, host, idx, b
 							'id': idx === 0 && typeof button === 'string' ?
 								settings.sTableId +'_'+ button :
 								null,
-							'href': '#',
+							'href': disabled ? null : '#',
 							'aria-controls': settings.sTableId,
+							'aria-disabled': disabled ? 'true' : null,
 							'aria-label': aria[ button ],
-							'data-dt-idx': counter,
+							'aria-role': 'link',
+							'aria-current': btnClass === 'active' ? 'page' : null,
+							'data-dt-idx': button,
 							'tabindex': settings.iTabIndex
 						} )
 						.html( btnDisplay )
@@ -158,8 +168,6 @@ DataTable.ext.renderer.pageButton.semanticUI = function ( settings, host, idx, b
 					settings.oApi._fnBindAction(
 						node, {action: button}, clickHandler
 					);
-
-					counter++;
 				}
 			}
 		}
@@ -179,12 +187,12 @@ DataTable.ext.renderer.pageButton.semanticUI = function ( settings, host, idx, b
 	catch (e) {}
 
 	attach(
-		$(host).empty().html('<div class="ui pagination menu"/>').children(),
+		$(host).empty().html('<div class="ui stackable pagination menu"/>').children(),
 		buttons
 	);
 
-	if ( activeEl ) {
-		$(host).find( '[data-dt-idx='+activeEl+']' ).focus();
+	if ( activeEl !== undefined ) {
+		$(host).find( '[data-dt-idx='+activeEl+']' ).trigger('focus');
 	}
 };
 
@@ -195,12 +203,16 @@ $(document).on( 'init.dt', function (e, ctx) {
 		return;
 	}
 
+	var api = new $.fn.dataTable.Api( ctx );
+
 	// Length menu drop down
 	if ( $.fn.dropdown ) {
-		var api = new $.fn.dataTable.Api( ctx );
-
 		$( 'div.dataTables_length select', api.table().container() ).dropdown();
 	}
+
+	// Filtering input
+	$( 'div.dataTables_filter.ui.input', api.table().container() ).removeClass('input').addClass('form');
+	$( 'div.dataTables_filter input', api.table().container() ).wrap( '<span class="ui input" />' );
 } );
 
 
