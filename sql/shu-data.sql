@@ -1,12 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Oct 03, 2017 at 07:07 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 5.6.31
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -130,16 +121,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, 'price', 'amount') VALUES
-(1, 'Product A', 300, ''),
-(2, 'Product B'),
-(3, 'Product C'),
-(4, 'Product D'),
-(5, 'Product E'),
-(6, 'Product F'),
-(7, 'Product G'),
-(8, 'Product H'),
-(9, 'Product I'),
-(10, 'Product J');
+(1, 'Product A', 3.00, 10),
+(2, 'Product B', 3.00, 10),
+(3, 'Product C', 3.00, 10),
+(4, 'Product D', 3.00, 10),
+(5, 'Product E', 3.00, 10),
+(6, 'Product F', 3.00, 10),
+(7, 'Product G', 3.00, 10),
+(8, 'Product H', 3.00, 10),
+(9, 'Product I', 3.00, 10),
+(10, 'Product J', 3.00, 10);
 
 -- --------------------------------------------------------
 
@@ -212,7 +203,9 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`id`, `product_id`, `canteen_id`, `price`, `amount`, `dop`) VALUES
-(1, 1, 1, 12, 12.42, '2017-09-06 00:00:00');
+(1, 1, 1, 12.42, 12, '2017-09-06 00:00:00');
+(2, 2, 1, 13.40, 20, '2017-09-06 00:00:00');
+(3, 3, 1, 15.60, 60, '2017-09-06 00:00:00');
 
 -- --------------------------------------------------------
 

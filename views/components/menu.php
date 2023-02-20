@@ -29,11 +29,14 @@
                 <li class="">
                 <a href="/items_sold"><i class="fa fa-shopping-cart fa-fw"></i>Items sold</a>
                 </li>
+                <li class="">
+                <a href="/canteens"><i class="fa fa-cutlery fa-fw"></i>Canteen Admin</a>
+                </li>
             <?php 
             }
             ?>
             <li class="">
-                <a href="/canteens"><i class="fa fa-cutlery fa-fw"></i>Canteens</a>
+                <a href="/canteenview"><i class="fa fa-cutlery fa-fw"></i>Canteens</a>
             </li>
             <li class="">
                 <a href="/products"><i class="fa fa-shopping-bag fa-fw"></i>Products</a>

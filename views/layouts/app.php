@@ -53,6 +53,8 @@
             include __DIR__ . '/../profile.php';
         elseif ($page == 'table')
             include __DIR__ . '/../table.php';
+        elseif ($page == 'canteen')
+            include __DIR__ . '/../canteen.php';
     }else{
         include __DIR__ . '/../auth/login.php';
     }
@@ -75,6 +77,7 @@ if ($page == 'table'){
     <script src="/vendor/datatables-responsive/dataTables.responsive.js"></script>
     <script src="/vendor/datatables-plugins/dataTables.buttons.min.js"></script>
     <script src="/vendor/datatables-plugins/dataTables.select.min.js"></script>
+    <script src="/vendor/datatables-plugins/dataTables.dateTime.min.js"></script>
 
     <script type="text/javascript" language="javascript" src="/vendor/datatables-editor/js/dataTables.editor.min.js">
     </script>

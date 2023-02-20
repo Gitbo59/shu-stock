@@ -513,7 +513,7 @@ $(document).ready(function () {
             .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 
     }
-   else if (location.pathname == '/canteens') {
+    else if (location.pathname == '/canteens') {
 
         $('.page-header').html('Canteens');
         $('.panel-heading').html('Add, Edit, Delete canteens');
@@ -553,7 +553,6 @@ $(document).ready(function () {
             "bInfo": false,
             "bLengthChange" : false
         });
-
         editor = new $.fn.dataTable.Editor( {
 
             ajax: {
@@ -673,7 +672,14 @@ $(document).ready(function () {
             .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 
     }
- else if (location.pathname == '/products') {
+    else if (location.pathname == '/canteenview') {
+
+        $('.page-header').html('Canteens');
+        
+        
+        
+    }
+    else if (location.pathname == '/products') {
 
         $('.page-header').html('Products');
         $('.panel-heading').html('Add, Edit, Delete Products');

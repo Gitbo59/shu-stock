@@ -25,7 +25,7 @@ class Stock extends Model
 
         return $json;
     }
-
+    
     function insert($data){
         $sql = "INSERT INTO stocks (`weight`, `purity`, `canteen_id`, `product_id`) VALUES ('".$data['weight']."', '".$data['purity']."', '".$data['canteen_id']."', '".$data['product_id']."')";
 

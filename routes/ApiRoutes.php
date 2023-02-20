@@ -11,6 +11,8 @@ require_once __DIR__ . '/../controllers/RateController.php';
 require_once __DIR__ . '/../controllers/TransactionController.php';
 require_once __DIR__ . '/../controllers/StockController.php';
 require_once __DIR__ . '/../controllers/ItemsSoldController.php';
+require_once __DIR__ . '/../controllers/CanteenController.php';
+require_once __DIR__ . '/../controllers/CanteenViewer.php';
 
 class ApiRoutes extends Route
 {
@@ -95,6 +97,18 @@ class ApiRoutes extends Route
                 CanteenController::delete(self::$data['id']);
             else
                 self::response(404, ["message"=> "Page not found!"]);
+            break;
+            case 'canteenview':
+                if(self::$method == 'GET')
+                    CanteenViewer::get();
+                else if(self::$method == 'POST')
+                    CanteenViewer::insert(self::$data);
+                else if(self::$method == 'PATCH')
+                    CanteenViewer::update(self::$data);
+                else if(self::$method == 'DELETE')
+                    CanteenViewer::delete(self::$data['id']);
+                else
+                    self::response(404, ["message"=> "Page not found!"]);
             break;
             case 'products':
                 if(self::$method == 'GET')
