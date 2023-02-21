@@ -18,10 +18,6 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `project5.6`
---
-
 -- --------------------------------------------------------
 
 --
@@ -220,23 +216,24 @@ INSERT INTO `stocks` (`id`, `product_id`, `canteen_id`, `weight`, `purity`, `dop
 
 CREATE TABLE `transactions` (
   `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
   `name` varchar(120) NOT NULL,
   `cost` decimal(2,2) NOT NULL,
-  `rate_id` int(11) NOT NULL
+  `canteen_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `name`, `cost`, `rate_id`) VALUES
-(1, "sandwich", 20.20, 1),
-(1, "sandwich", 21.23, 1),
-(1, "sandwich", 22.15, 1),
-(1, "sandwich", 20.20, 1),
-(1, "sandwich", 10.10, 1),
-(1, "sandwich", 1.13, 1),
-(1, "sandwich", 0.99, 1),;
+INSERT INTO `transactions` (`id`, `product_id`, `name`, `cost`, `canteen_id`) VALUES
+(1, 1, "sandwich", 20.20, 1),
+(2, 1, "sandwich", 21.23, 1),
+(3, 1, "sandwich", 22.15, 1),
+(4, 1, "sandwich", 20.20, 1),
+(5, 1, "sandwich", 10.10, 1),
+(6, 1, "sandwich", 1.13, 1),
+(7, 1, "sandwich", 00.99, 1);
 
 -- --------------------------------------------------------
 
@@ -304,9 +301,9 @@ ALTER TABLE `products`
 --
 -- Indexes for table `rates`
 --
-ALTER TABLE `rates`
+/* ALTER TABLE `rates`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `date` (`date`);
+  ADD UNIQUE KEY `date` (`date`); */
 
 --
 -- Indexes for table `sold_items`
@@ -331,7 +328,8 @@ ALTER TABLE `stocks`
 --
 ALTER TABLE `transactions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `rate_id` (`rate_id`);
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `canteen_id` (`canteen_id`);
 
 --
 -- Indexes for table `users`
@@ -368,9 +366,9 @@ ALTER TABLE `products`
 --
 -- AUTO_INCREMENT for table `rates`
 --
-ALTER TABLE `rates`
+/* ALTER TABLE `rates`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
+-- */
 -- AUTO_INCREMENT for table `sold_items`
 --
 ALTER TABLE `sold_items`
@@ -413,9 +411,9 @@ ALTER TABLE `stocks`
 --
 -- Constraints for table `transactions`
 --
-ALTER TABLE `transactions`
-  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`rate_id`) REFERENCES `rates` (`id`);
-
+/* ALTER TABLE `transactions`
+  ADD CONSTRAINT `transactions_ibfk_1` REFERENCES `rates` (`id`);
+ */
 --
 -- Constraints for table `users`
 --
