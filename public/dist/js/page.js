@@ -821,7 +821,7 @@ $(document).ready(function () {
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Weight'}) );
-        $('thead tr').append( $('<th />', {text : 'Purity'}) );
+        $('thead tr').append( $('<th />', {text : 'Amount'}) );
         $('thead tr').append( $('<th />', {text : 'Rate'}) );
 
         $('#table').on( 'click', 'tr', function () {
@@ -843,7 +843,7 @@ $(document).ready(function () {
             "columns": [
                 {"data": "id"},
                 {"data": "weight"},
-                {"data": "purity"},
+                {"data": "Amount"},
                 {"data": "rate.rate"}
             ],
             'bPaginate': false,
@@ -860,7 +860,7 @@ $(document).ready(function () {
                     url: '/api/transactions',
                     data: function(d){
                         d.weight= $("#DTE_Field_weight").val();
-                        d.purity= $("#DTE_Field_purity").val();
+                        d.Amount= $("#DTE_Field_Amount").val();
                         d.rate_id= $("#DTE_Field_rate_id").val();
                         delete d.data;
                         delete d.action;
@@ -882,7 +882,7 @@ $(document).ready(function () {
                     data: function(d){
                         d.id = row_id;
                         d.weight= $("#DTE_Field_weight").val();
-                        d.purity= $("#DTE_Field_purity").val();
+                        d.Amount= $("#DTE_Field_Amount").val();
                         d.rate_id= $("#DTE_Field_rate_id").val();
                         delete d.data;
                         delete d.action;
@@ -931,8 +931,8 @@ $(document).ready(function () {
                     "type": "number"
                 }
             }, {
-                label: "Purity:",
-                name: "purity",
+                label: "Amount:",
+                name: "Amount",
                 attr: {
                     "type": "number"
                 }
@@ -998,7 +998,7 @@ $(document).ready(function () {
         $('thead tr').append( $('<th />', {text : 'Product'}) );
         $('thead tr').append( $('<th />', {text : 'Canteen'}) );
         $('thead tr').append( $('<th />', {text : 'Weight'}) );
-        $('thead tr').append( $('<th />', {text : 'Purity'}) );
+        $('thead tr').append( $('<th />', {text : 'Amount'}) );
         $('thead tr').append( $('<th />', {text : 'Date of purchase'}) );
 
         $('#table').on( 'click', 'tr', function () {
@@ -1022,7 +1022,7 @@ $(document).ready(function () {
                 {"data": "product.name"},
                 {"data": "canteen.name"},
                 {"data": "weight"},
-                {"data": "purity"},
+                {"data": "Amount"},
                 {"data": "dop"}
             ],
             'bPaginate': false,
@@ -1041,7 +1041,7 @@ $(document).ready(function () {
                         d.product_id = $("#DTE_Field_product_id").val();
                         d.canteen_id= $("#DTE_Field_canteen_id").val();
                         d.weight= $("#DTE_Field_weight").val();
-                        d.purity= $("#DTE_Field_purity").val();
+                        d.Amount= $("#DTE_Field_Amount").val();
                         d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
                         delete d.action;
@@ -1065,7 +1065,7 @@ $(document).ready(function () {
                         d.product_id = $("#DTE_Field_product_id").val();
                         d.canteen_id= $("#DTE_Field_canteen_id").val();
                         d.weight= $("#DTE_Field_weight").val();
-                        d.purity= $("#DTE_Field_purity").val();
+                        d.Amount= $("#DTE_Field_Amount").val();
                         d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
                         delete d.action;
@@ -1122,8 +1122,8 @@ $(document).ready(function () {
                     "type": "number"
                 }
             }, {
-                label: "Purity:",
-                name: "purity",
+                label: "Amount:",
+                name: "Amount",
                 attr: {
                     "type": "number"
                 }
@@ -1386,7 +1386,7 @@ $(document).ready(function () {
                 }
 
                 for (var i = 0; i < transactions.length; i++) {
-                    solditem_transaction.push({label: transactions[i]['id'] + ' - Weight: ' + transactions[i]['weight'] + ' - Purity: ' + transactions[i]['purity'], value: transactions[i]['id']});
+                    solditem_transaction.push({label: transactions[i]['id'] + ' - Weight: ' + transactions[i]['weight'] + ' - Amount: ' + transactions[i]['Amount'], value: transactions[i]['id']});
                 }
                 editor.field('stock_id').update(solditem_stock);
                 editor.field('customer_id').update(solditem_customer);
@@ -1482,7 +1482,7 @@ $(document).ready(function () {
                 response = $.parseJSON(response);
                 var transactions = response['data'];
                 $.each(transactions, function (i, transaction) {
-                    $(".latest-transactions").append("<tr><td>"+transaction['id']+"</td><td>"+transaction['weight']+"</td><td>"+transaction['purity']+"</td><td>"+transaction['rate']['rate']+"</td></tr>");
+                    $(".latest-transactions").append("<tr><td>"+transaction['id']+"</td><td>"+transaction['weight']+"</td><td>"+transaction['Amount']+"</td><td>"+transaction['rate']['rate']+"</td></tr>");
                 });
             }, error: function () {
                 $.notify('There was an error fetching data.');

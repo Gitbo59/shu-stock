@@ -13,7 +13,7 @@ class ActivitySummary
     {
         $row = array();
         $row['weight'] = $data['weight'];
-        $row['purity'] = $data['purity'];
+        $row['Amount'] = $data['Amount'];
         $row['rate'] = $data['rate_id'];
         $_SESSION['transactions'][] = $row;
     }

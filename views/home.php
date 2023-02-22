@@ -178,7 +178,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Weight</th>
-                                    <th>Purity</th>
+                                    <th>Amount</th>
                                     <th>Rate</th>
                                 </tr>
                                 </thead>
@@ -279,7 +279,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Weight</th>
-                                    <th>Purity</th>
+                                    <th>Amount</th>
                                     <th>Rate</th>
                                 </tr>
                                 </thead>
