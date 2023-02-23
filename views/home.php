@@ -149,57 +149,7 @@
                     </a>
                 </div>
             </div> -->
-            <!-- <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-credit-card fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div id="transactions" class="huge"></div>
-                                <div>Transactions!</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div> -->
-            <!-- <div CLASS="col-lg-5">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <i class="fa fa-credit-card fa-fw"></i> Latest Transactions
-                    </div>
-                    
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Weight</th>
-                                    <th>Amount</th>
-                                    <th>Rate</th>
-                                </tr>
-                                </thead>
-                                <tbody class="latest-transactions">
-                                </tbody>
-                            </table>
-                        </div>
-                        
-                       
-                    </div>
-                    <a href="/transactions">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Transactions</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                    
-                </div>
-                
-            </div> -->
+           
             <?php 
 			}
 			?>
@@ -211,7 +161,10 @@
                             <div class="col-xs-3">
                                 <i class="fa fa-cutlery fa-5x"></i>
                             </div>
-                            
+                            <div class="col-xs-9 text-right">
+                                <div id="canteens" class="huge"></div>
+                                <div>Canteens</div>
+                            </div>
                         </div>
                     </div>
                     <a href="/canteens">
@@ -311,7 +264,7 @@
                     </div> -->
                 
                     <div class="panel-body">
-                        <img src="https://www.shu.ac.uk/-/media/home/myhallam/landing-pages/feature-images/campus-photos/2021-campus-feature.jpg?iar=0&hash=D34D95B307DC7E19EBE352834965131C" alt="alternatetext" width="605" height="400"> 
+                        <img src="https://www.shu.ac.uk/-/media/home/myhallam/landing-pages/feature-images/campus-photos/2021-campus-feature.jpg?iar=0&hash=D34D95B307DC7E19EBE352834965131C" alt="alternatetext" style="width:100%"> 
                     </div>
                     <a href="https://www.shu.ac.uk/myhallam">
                         <div class="panel-footer">
