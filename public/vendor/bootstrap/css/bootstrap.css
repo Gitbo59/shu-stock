@@ -3127,14 +3127,14 @@ fieldset[disabled] .btn-default.focus {
 .btn-primary:hover {
   color: #fff;
   background-color: #96053a;
-  border-color: #204d74;
+  border-color: #b90f56;
 }
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
   background-color: #96053a;
-  border-color: #204d74;
+  border-color: #b90f56;
 }
 .btn-primary:active:hover,
 .btn-primary.active:hover,
