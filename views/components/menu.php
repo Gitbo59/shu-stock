@@ -42,17 +42,17 @@
                     <ul class="dropdown-canteen">
                         <a href="/canteenview">View All</a>
                         <li class="divider"></li>
-                        <a href="#cantor">Cantor</a>
+                        <a href="/canteen-cantor">Cantor</a>
                         <li class="divider"></li>
-                        <a href="#services">Charles Street</a>
+                        <a href="/canteen-charles_street">Charles Street</a>
                         <li class="divider"></li>
-                        <a href="#atrium">Atrium</a>
+                        <a href="/canteen-atrium">Atrium</a>
                         <li class="divider"></li>
-                        <a href="#owen">Owen Building</a>
+                        <a href="/canteen-owen_building">Owen Building</a>
                         <li class="divider"></li>
-                        <a href="#aspect">Aspect Court</a>
+                        <a href="/canteen-aspect_court">Aspect Court</a>
                         <li class="divider"></li>
-                        <a href="#adsetts">Adsetts</a>
+                        <a href="/canteen-adsetts">Adsetts</a>
                     </ul>
                 
             </li>

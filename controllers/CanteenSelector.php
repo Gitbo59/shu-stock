@@ -4,10 +4,10 @@ require_once 'Controller.php';
 require_once __DIR__ . '/../model/Canteen.php';
 require_once __DIR__ . '/../helpers/ValidateParams.php';
 
-class CanteenViewer extends Controller
+class CanteenSelector extends Controller
 {
     public static function index(){
-        $page = 'canteen';
+        $page = 'canteen-selector';
         self::view('layouts/app.php', $page);
     }
 

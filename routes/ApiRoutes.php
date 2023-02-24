@@ -13,6 +13,7 @@ require_once __DIR__ . '/../controllers/StockController.php';
 require_once __DIR__ . '/../controllers/ItemsSoldController.php';
 require_once __DIR__ . '/../controllers/CanteenController.php';
 require_once __DIR__ . '/../controllers/CanteenViewer.php';
+require_once __DIR__ . '/../controllers/CanteenSelector.php';
 
 class ApiRoutes extends Route
 {
@@ -107,6 +108,42 @@ class ApiRoutes extends Route
                     CanteenViewer::update(self::$data);
                 else if(self::$method == 'DELETE')
                     CanteenViewer::delete(self::$data['id']);
+                else
+                    self::response(404, ["message"=> "Page not found!"]);
+            break;
+            case 'canteen-cantor':
+                if(self::$method == 'GET')
+                    CanteenSelector::get();
+                else
+                    self::response(404, ["message"=> "Page not found!"]);
+            break;
+            case 'canteen-charles_street':
+                if(self::$method == 'GET')
+                    CanteenSelector::get();
+                else
+                    self::response(404, ["message"=> "Page not found!"]);
+            break;
+            case 'canteen-attrium':
+                if(self::$method == 'GET')
+                    CanteenSelector::get();
+                else
+                    self::response(404, ["message"=> "Page not found!"]);
+            break;
+            case 'canteen-owen_building':
+                if(self::$method == 'GET')
+                    CanteenSelector::get();
+                else
+                    self::response(404, ["message"=> "Page not found!"]);
+            break;
+            case 'canteen-aspect_court':
+                if(self::$method == 'GET')
+                    CanteenSelector::get();
+                else
+                    self::response(404, ["message"=> "Page not found!"]);
+            break;
+            case 'canteen-adsetts':
+                if(self::$method == 'GET')
+                    CanteenSelector::get();
                 else
                     self::response(404, ["message"=> "Page not found!"]);
             break;

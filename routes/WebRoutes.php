@@ -14,6 +14,7 @@ require_once __DIR__ . '/../controllers/RateController.php';
 require_once __DIR__ . '/../controllers/TableController.php';
 require_once __DIR__ . '/../controllers/CanteenController.php';
 require_once __DIR__ . '/../controllers/CanteenViewer.php';
+require_once __DIR__ . '/../controllers/CanteenSelector.php';
 require_once __DIR__ . '/../controllers/ItemsSoldController.php';
 
 class WebRoutes extends Route
@@ -75,6 +76,24 @@ class WebRoutes extends Route
                 break;
             case 'canteenview':
                 CanteenViewer::index();
+            break;
+            case 'canteen-cantor':
+                CanteenSelector::index();
+            break;
+            case 'canteen-charles_street':
+                CanteenSelector::index();
+            break;
+            case 'canteen-atrium':
+                CanteenSelector::index();
+            break;
+            case 'canteen-owen_building':
+                CanteenSelector::index();
+            break;
+            case 'canteen-aspect_court':
+                CanteenSelector::index();
+            break;
+            case 'canteen-adsetts':
+                CanteenSelector::index();
             break;
             case 'items_sold':
                 ItemsSoldController::index();
