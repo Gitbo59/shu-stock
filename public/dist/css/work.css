@@ -62,9 +62,34 @@ body {
   right: 0;
   left: auto;
 }
-.sidebar .sidebar-nav.navbar-collapse {
-  padding-left: 0;
-  padding-right: 0;
+
+.sidebar-nav .dropdown-canteen li {
+  display: block;
+  right: 0;
+  left: auto;
+  padding: 10px;
+
+}
+
+@media (max-width: 400px) {
+  .sidebar.close .nav-links li .sub-menu{
+    display: none;
+  }
+  .sidebar{
+    width: 78px;
+  }
+  .sidebar.close{
+    width: 0;
+  }
+  .home-section{
+    left: 78px;
+    width: calc(100% - 78px);
+    z-index: 100;
+  }
+  .sidebar.close ~ .home-section{
+    width: 100%;
+    left: 0;
+  }
 }
 .sidebar .sidebar-search {
   padding: 15px;
@@ -451,15 +476,40 @@ table.dataTable thead .sorting:after {
   display: inline-block; 
   padding: 8px;
   color: white;
-  background-color: #000;
+  background-color: #b90f56;
   text-align: center;
   cursor: pointer;
   width: 100%;
 }
 
 .button:hover {
-  background-color: #555;
+  background-color: #621b40;
 } 
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+.dropdown-container a:hover{
+  display: block;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-angle-down {
+  float: right;
+  padding-right: 8px;
+  
+} 
+
 @media (max-width: 767px) {
   ul.timeline:before {
     left: 40px;

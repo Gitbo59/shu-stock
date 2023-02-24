@@ -85,7 +85,7 @@
                     <img class="canteen-img" src="https://www.shu.ac.uk/-/media/home/about-us/our-services/eating/kitchen-images/hallam-kitchen-2.jpg?iar=0&hash=A8A8B4AF5E830AD90001081EFB6CCB93" alt="Atrium" style="width:100%">
                     
                     <div class="description">
-                        <h2>Atrium</h2>
+                        <h2>Atrium Level 3</h2>
                         <p>Smaller canteen with decent amount of seating seating.</p>
                         
                     

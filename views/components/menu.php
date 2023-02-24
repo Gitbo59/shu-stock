@@ -35,19 +35,38 @@
             <?php 
             }
             ?>
-            <li class="">
-                <a href="/canteenview"><i class="fa fa-cutlery fa-fw"></i>Canteens</a>
+            <li class="dropdown">
+                <a href="/canteenview"><i class="fa fa-cutlery fa-fw"></i>Canteens  <i class="fa fa-angle-down fa-lg" aria-hidden="true"></i></a>
+                
+                
+                    <ul class="dropdown-canteen">
+                        <a href="/canteenview">View All</a>
+                        <li class="divider"></li>
+                        <a href="#cantor">Cantor</a>
+                        <li class="divider"></li>
+                        <a href="#services">Charles Street</a>
+                        <li class="divider"></li>
+                        <a href="#atrium">Atrium</a>
+                        <li class="divider"></li>
+                        <a href="#owen">Owen Building</a>
+                        <li class="divider"></li>
+                        <a href="#aspect">Aspect Court</a>
+                        <li class="divider"></li>
+                        <a href="#adsetts">Adsetts</a>
+                    </ul>
+                
             </li>
+            
+                
             <li class="">
                 <a href="/products"><i class="fa fa-shopping-bag fa-fw"></i>Products</a>
             </li>
-            <!--  <li class="">
-                <a href="/rates"><i class="fa fa-line-chart fa-fw"></i>Rates</a>
-            </li> -->
+            
             <li class="">
                 <a href="/stocks"><i class="fa fa-archive fa-fw"></i>Stock</a>
             </li>
             
         </ul>
     </div>
-    <!-- /.sidebar-collapse -->
+</div>
+
