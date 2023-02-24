@@ -35,11 +35,13 @@
             <?php 
             }
             ?>
-            <li class="">
+            <li class="dropdown">
                 <a href="/canteenview"><i class="fa fa-cutlery fa-fw"></i>Canteens  <i class="fa fa-angle-down fa-lg" aria-hidden="true"></i></a>
                 
                 
                     <ul class="dropdown-canteen">
+                        <a href="/canteenview">View All</a>
+                        <li class="divider"></li>
                         <a href="#cantor">Cantor</a>
                         <li class="divider"></li>
                         <a href="#services">Charles Street</a>

@@ -63,10 +63,12 @@ body {
   left: auto;
 }
 
-.sidebar-nav .dropdown-canteen {
+.sidebar-nav .dropdown-canteen li {
   display: block;
   right: 0;
   left: auto;
+  padding: 10px;
+
 }
 
 @media (max-width: 400px) {
