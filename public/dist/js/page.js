@@ -679,6 +679,50 @@ $(document).ready(function () {
         
         
     }
+    else if (location.pathname.includes('canteen-')) {
+
+        titlelow = location.pathname.split('-')[1];
+        title = titlelow.charAt(0).toUpperCase() + titlelow.slice(1).replace('_', ' ');
+
+        $('.page-header').html(title);
+
+        $('thead tr').append( $('<th />', {text : 'Product'}) );
+        $('thead tr').append( $('<th />', {text : 'Amount'}) );
+        $('thead tr').append( $('<th />', {text : 'Price'}) );
+        $('thead tr').append( $('<th />', {text : 'Part of Meal Deal?'}) );
+       
+
+        $('#table').on( 'click', 'tr', function () {
+            try {
+                row_id = table.row( this ).data().id;
+                editor.s.ajax.edit.url = '/api/canteens';
+                editor.s.ajax.remove.url = '/api/canteens';
+            }
+            catch (e) {
+
+            }
+        } );
+        
+        var table = $('#table').DataTable({
+            'responsive': true,
+            "ajax": {
+                "url": "/api/canteens",
+                "type": "GET",
+            },
+            "columns": [
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "address"},
+                {"data": "phone"},
+                {"data": "email"}
+            ],
+            'bPaginate': false,
+            'select': true,
+            "bInfo": false,
+            "bLengthChange" : false
+        });
+        
+    }
     else if (location.pathname == '/products') {
 
         $('.page-header').html('Products');
