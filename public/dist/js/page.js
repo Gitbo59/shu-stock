@@ -1,6 +1,7 @@
 $(document).ready(function () {
     var row_id = 0;
-
+    titlevar = location.pathname.replace('/', '')
+    document.title = titlevar.charAt(0).toUpperCase() + titlevar.slice(1)
     if (location.pathname == '/customers') {
 
         $('.page-header').html('Customers');
@@ -685,6 +686,7 @@ $(document).ready(function () {
         title = titlelow.charAt(0).toUpperCase() + titlelow.slice(1).replace('_', ' ');
 
         $('.page-header').html(title);
+        document.title = title
 
         $('thead tr').append( $('<th />', {text : 'Product'}) );
         $('thead tr').append( $('<th />', {text : 'Amount'}) );

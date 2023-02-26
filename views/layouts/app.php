@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="/dist/favicon-32x32.png">
-    <title><?php echo $page; ?></title>
+
     <link type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <link type="text/css" href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
