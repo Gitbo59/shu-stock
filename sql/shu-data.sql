@@ -206,8 +206,8 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`id`, `product_id`, `canteen_id`, `price`, `amount`, `dop`) VALUES
-(1, 1, 1, 12.42, 12, '2017-09-06 00:00:00');
-(2, 2, 1, 13.40, 20, '2017-09-06 00:00:00');
+(1, 1, 1, 12.42, 12, '2017-09-06 00:00:00'),
+(2, 2, 1, 13.40, 20, '2017-09-06 00:00:00'),
 (3, 3, 1, 15.60, 60, '2017-09-06 00:00:00');
 
 -- --------------------------------------------------------
@@ -257,14 +257,14 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `employee_id`, `email`, `password`, `admin`, `staff`) VALUES
-(1, 1, 'employee01@mail.com', 'password', 1, 0),
-(2, 2, 'employee02@mail.com', 'secret', 0, 0),
-(3, 3, 'employee03@mail.com', 'secret', 0, 1),
-(4, 4, 'employee04@mail.com', 'secret', 0, 0),
-(5, 5, 'employee05@mail.com', 'secret', 1, 0),
-(6, 6, 'employee06@mail.com', 'secret', 0, 0),
-(7, 7, 'employee07@mail.com', 'secret', 1, 0),
-(8, 8, 'employee08@mail.com', 'secret', 0, 0);
+(1, 'jack', 'employee01@mail.com', 'password', 1, 0, 07859945742, '2017-10-19 03:35:07', NULL, NULL),
+(2, 'james', 'employee02@mail.com', 'secret', 0, 0, 07859945742, '2017-10-19 03:35:07', NULL, NULL),
+(3, 'fox', 'employee03@mail.com', 'secret', 0, 1, 07859945742, '2017-10-19 03:35:07', 1, NULL),
+(4, 'aaron', 'employee04@mail.com', 'secret', 0, 0, 07859945742, '2017-10-19 03:35:07', NULL, NULL),
+(5, 'bert', 'employee05@mail.com', 'secret', 1, 0, 07859945742, '2017-10-19 03:35:07', NULL, NULL),
+(6, 'stacy', 'employee06@mail.com', 'secret', 0, 0, 07859945742, '2017-10-19 03:35:07', NULL, NULL),
+(7, 'tom', 'employee07@mail.com', 'secret', 1, 0, 07859945742, '2017-10-19 03:35:07', NULL, NULL),
+(8, 'paul', 'employee08@mail.com', 'secret', 0, 0, 07859945742, '2017-10-19 03:35:07', NULL, 1);
 
 --
 -- Indexes for dumped tables
