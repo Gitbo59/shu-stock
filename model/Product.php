@@ -17,7 +17,7 @@ class Product extends Model
 
     function insert($data)
     {
-        $sql = "INSERT INTO products (`name`) VALUES ('" . $data['name'] . "')";
+        $sql = "INSERT INTO products (`name`, `price`, `pomd`) VALUES ('" . $data['name'] . "','" . $data['price'] . "','" . $data['pomd'] . "')";
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
@@ -45,7 +45,7 @@ class Product extends Model
 
     function update($data)
     {
-        $sql = "UPDATE products SET name='" . $data['name'] . "' WHERE id=" . $data["id"];
+        $sql = "UPDATE products SET name='" . $data['name'] . "',price='" . $data['price'] . "',pomd='" . $data['pomd'] . "' WHERE id=" . $data["id"];
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
