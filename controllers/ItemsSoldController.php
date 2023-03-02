@@ -50,7 +50,7 @@ class ItemsSoldController extends Controller
             http_response_code(422);
             echo json_encode($d);
         }else{
-            $data['data'] = ['stock_id' => $sold_item['stock_id'], 'customer_id' => $sold_item['customer_id'], 'employee_id' => $sold_item['employee_id'], 'transaction_id' => $sold_item['transaction_id'], 'price' => $sold_item['price'], 'dos' => $sold_item['dos']];
+            $data['data'] = ['stock_id' => $sold_item['stock_id'], 'customer_id' => $sold_item['customer_id'], 'employee_id' => $sold_item['employee_id'], 'transaction_id' => $sold_item['transaction_id'], 'price' => $sold_item['price']];
             header('Content-type: application/json');
             echo json_encode($data);
         }
@@ -79,10 +79,6 @@ class ItemsSoldController extends Controller
         if (!ValidateParams::validateInteger($data['price'])) {
             $result = false;
             $d['price'] = ['The price must be a integer value'];
-        }
-        if (!ValidateParams::dateTime($data['dos'])) {
-            $result = false;
-            $d['dos'] = ['The date must be in valid format(Y-m-d H:i:s).'];
         }
         if($result == true){
             $sold_item = $sold_item->insert($data);
@@ -126,10 +122,6 @@ class ItemsSoldController extends Controller
         if (!ValidateParams::validateInteger($data['price'])) {
             $result = false;
             $d['price'] = ['The price must be a integer value'];
-        }
-        if (!ValidateParams::dateTime($data['dos'])) {
-            $result = false;
-            $d['dos'] = ['The date must be in valid format(Y-m-d H:i:s).'];
         }
         if($result == true){
             $sold_item = $sold_item->update($data);

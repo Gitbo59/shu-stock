@@ -37,7 +37,7 @@ class TransactionController extends Controller
             http_response_code(422);
             echo json_encode($d);
         }else{
-            $data['data'] = ['weight' => $transaction['weight'], 'Amount' => $transaction['Amount'], 'rate_id' => $transaction['rate_id']];
+            $data['data'] = ['weight' => $transaction['weight'], 'purity' => $transaction['purity'], 'rate_id' => $transaction['rate_id']];
 
             header('Content-type: application/json');
             echo json_encode($data);
@@ -52,9 +52,9 @@ class TransactionController extends Controller
             $result = false;
             $d['weight'] = ['The weight must be a integer value'];
         }
-        if (!ValidateParams::validateInteger($data['Amount'])) {
+        if (!ValidateParams::validateInteger($data['purity'])) {
             $result = false;
-            $d['Amount'] = ['The Amount must be a integer value'];
+            $d['purity'] = ['The purity must be a integer value'];
         }
         if (!ValidateParams::validateInteger($data['rate_id'])) {
             $result = false;
@@ -88,9 +88,9 @@ class TransactionController extends Controller
             $result = false;
             $d['weight'] = ['The weight must be a integer value'];
         }
-        if (!ValidateParams::validateInteger($data['Amount'])) {
+        if (!ValidateParams::validateInteger($data['purity'])) {
             $result = false;
-            $d['Amount'] = ['The Amount must be a integer value'];
+            $d['purity'] = ['The purity must be a integer value'];
         }
         if (!ValidateParams::validateInteger($data['rate_id'])) {
             $result = false;

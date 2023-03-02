@@ -23,7 +23,7 @@ class ItemsSold extends Model
     }
 
     function insert($data){
-        $sql = "INSERT INTO sold_items (`stock_id`, `customer_id`, `employee_id`, `transaction_id`, `price`, `dos`) VALUES ('".$data['stock_id']."', '".$data['customer_id']."', '".$data['employee_id']."', '".$data['transaction_id']."', '".$data['price']."', '".$data['dos']."')";
+        $sql = "INSERT INTO sold_items (`stock_id`, `customer_id`, `employee_id`, `transaction_id`, `price` ) VALUES ('".$data['stock_id']."', '".$data['customer_id']."', '".$data['employee_id']."', '".$data['transaction_id']."', '".$data['price']."')";
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
@@ -49,7 +49,7 @@ class ItemsSold extends Model
     }
 
     function update($data){
-        $sql = "UPDATE sold_items SET stock_id='".$data['stock_id']."', customer_id='".$data['customer_id']."', employee_id='".$data['employee_id']."', transaction_id='".$data['transaction_id']."', price='".$data['price']."', dos='".$data['dos']."' WHERE id=".$data["id"];
+        $sql = "UPDATE sold_items SET stock_id='".$data['stock_id']."', customer_id='".$data['customer_id']."', employee_id='".$data['employee_id']."', transaction_id='".$data['transaction_id']."', price='".$data['price']." WHERE id=".$data["id"];
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();

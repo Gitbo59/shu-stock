@@ -21,7 +21,7 @@ class Transaction extends Model
         while($row = mysqli_fetch_assoc($result)){
             $row['id'] = (int) $row['id'];
             $row['weight'] = (int) $row['weight'];
-            $row['Amount'] = (int) $row['Amount'];
+            $row['purity'] = (int) $row['purity'];
             $row['rate_id'] = (int) $row['rate_id'];
             $json[] = $row;
         }
@@ -30,7 +30,7 @@ class Transaction extends Model
     }
 
     function insert($data){
-        $sql = "INSERT INTO transactions (`weight`, `Amount`, `rate_id`) VALUES ('".$data['weight']."', '".$data['Amount']."', '".$data['rate_id']."')";
+        $sql = "INSERT INTO transactions (`weight`, `purity`, `rate_id`) VALUES ('".$data['weight']."', '".$data['purity']."', '".$data['rate_id']."')";
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
@@ -49,7 +49,7 @@ class Transaction extends Model
             $row = $result->fetch_assoc();
             $row['id'] = (int) $row['id'];
             $row['weight'] = (int) $row['weight'];
-            $row['Amount'] = (int) $row['Amount'];
+            $row['purity'] = (int) $row['purity'];
             $row['rate_id'] = (int) $row['rate_id'];
             $this->conn->close();
             return $row;
@@ -60,7 +60,7 @@ class Transaction extends Model
     }
 
     function update($data){
-        $sql = "UPDATE transactions SET weight='".$data['weight']."', Amount='".$data['Amount']."', rate_id='".$data['rate_id']."' WHERE id=".$data["id"];
+        $sql = "UPDATE transactions SET weight='".$data['weight']."', purity='".$data['purity']."', rate_id='".$data['rate_id']."' WHERE id=".$data["id"];
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();

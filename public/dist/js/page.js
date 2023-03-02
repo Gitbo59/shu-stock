@@ -9,7 +9,6 @@ $(document).ready(function () {
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Name'}) );
-        $('thead tr').append( $('<th />', {text : 'Address'}) );
         $('thead tr').append( $('<th />', {text : 'Email'}) );
         $('thead tr').append( $('<th />', {text : 'Phone'}) );
 
@@ -33,7 +32,6 @@ $(document).ready(function () {
             "columns": [
                 {"data": "id"},
                 {"data": "name"},
-                {"data": "address"},
                 {"data": "phone"},
                 {"data": "email"}
             ],
@@ -197,7 +195,7 @@ $(document).ready(function () {
                 {"data": "address"},
                 {"data": "phone"},
                 {"data": "gender"},
-                {"data": "doj"}
+                {"data": "doj"},
             ],
             'bPaginate': false,
             'select': true,
@@ -345,9 +343,11 @@ $(document).ready(function () {
         $('.panel-heading').html('Add, Edit, Delete users');
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
-        $('thead tr').append( $('<th />', {text : 'Employee'}) );
+        $('thead tr').append( $('<th />', {text : 'Name'}) );
         $('thead tr').append( $('<th />', {text : 'Email'}) );
         $('thead tr').append( $('<th />', {text : 'Admin'}) );
+        $('thead tr').append( $('<th />', {text : 'Staff'}) );
+        $('thead tr').append( $('<th />', {text : 'Employee ID'}) );
 
         $('#table').on( 'click', 'tr', function () {
             try {
@@ -370,7 +370,11 @@ $(document).ready(function () {
                 {"data": "id"},
                 {"data": "employee.name"},
                 {"data": "email"},
-                {"data": "admin"}
+                {"data": "admin"},
+                {"data": "staff"},
+                {"data": "employee.id"}
+                
+
             ],
             'bPaginate': false,
             'select': true,
@@ -387,8 +391,10 @@ $(document).ready(function () {
                     data: function(d){
                         d.table = true,
                         d.emp_id= $("#DTE_Field_emp_id").val();
+                        d.name= $("#DTE_Field_name").val();
                         d.email= $("#DTE_Field_email").val();
                         d.admin= $("input[name='admin']:checked").val();
+                        d.staff= $("input[name='staff']:checked").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -409,8 +415,10 @@ $(document).ready(function () {
                     data: function(d){
                         d.id = row_id;
                         d.emp_id= $("#DTE_Field_emp_id").val();
+                        d.name= $("#DTE_Field_name").val();
                         d.email= $("#DTE_Field_email").val();
                         d.admin= $("input[name='admin']:checked").val();
+                        d.staff= $("input[name='staff']:checked").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -456,11 +464,22 @@ $(document).ready(function () {
                     name: "emp_id",
                     type: "select"
             }, {
+                label: "Name:",
+                name: "name"
+            },{
                 label: "Email:",
                 name: "email"
             },{
                 label: "Admin:",
                 name: "admin",
+                type: "radio",
+                "ipOpts": [
+                    { "label": "Yes", "value": 1 },
+                    { "label": "No", "value": 0 }
+                ]
+            },{
+                label: "Staff:",
+                name: "staff",
                 type: "radio",
                 "ipOpts": [
                     { "label": "Yes", "value": 1 },
@@ -732,6 +751,8 @@ $(document).ready(function () {
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Name'}) );
+        $('thead tr').append( $('<th />', {text : 'Price'}) );
+        $('thead tr').append( $('<th />', {text : 'Part of the Meal Deal?'}) );
 
         $('#table').on( 'click', 'tr', function () {
             try {
@@ -752,7 +773,9 @@ $(document).ready(function () {
             },
             "columns": [
                 {"data": "id"},
-                {"data": "name"}
+                {"data": "name"},
+                {"data": "price"},
+                {"data": "pomd"}
             ],
             'bPaginate': false,
             'select': true,
@@ -768,6 +791,8 @@ $(document).ready(function () {
                     url: '/api/products',
                     data: function(d){
                         d.name= $("#DTE_Field_name").val();
+                        d.price= $("#DTE_Field_price").val();
+                        d.pomd= $("#DTE_Field_pomd").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -788,6 +813,8 @@ $(document).ready(function () {
                     data: function(d){
                         d.id = row_id;
                         d.name= $("#DTE_Field_name").val();
+                        d.price= $("#DTE_Field_price").val();
+                        d.pomd= $("#DTE_Field_pomd").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -831,6 +858,12 @@ $(document).ready(function () {
             }, {
                 label: "Name:",
                 name: "name"
+            }, {
+                label: "Price:",
+                name: "price"
+            },{
+                label: "Part of the Meal Deal?",
+                name: "pomd"
             }
             ],
             i18n: {
@@ -866,9 +899,9 @@ $(document).ready(function () {
         $('.panel-heading').html('Add, Edit, Delete Transactions');
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
-        $('thead tr').append( $('<th />', {text : 'Weight'}) );
-        $('thead tr').append( $('<th />', {text : 'Amount'}) );
-        $('thead tr').append( $('<th />', {text : 'Rate'}) );
+        $('thead tr').append( $('<th />', {text : 'Product'}) );
+        $('thead tr').append( $('<th />', {text : 'Date of Purchase'}) );
+
 
         $('#table').on( 'click', 'tr', function () {
             try {
@@ -888,9 +921,9 @@ $(document).ready(function () {
             },
             "columns": [
                 {"data": "id"},
-                {"data": "weight"},
-                {"data": "Amount"},
-                {"data": "rate.rate"}
+                {"data": "product_id"},
+                {"data": "dop"},
+
             ],
             'bPaginate': false,
             'select': true,
@@ -905,8 +938,7 @@ $(document).ready(function () {
                     type: 'POST',
                     url: '/api/transactions',
                     data: function(d){
-                        d.weight= $("#DTE_Field_weight").val();
-                        d.Amount= $("#DTE_Field_Amount").val();
+                        d.amount= $("#DTE_Field_amount").val();
                         d.rate_id= $("#DTE_Field_rate_id").val();
                         delete d.data;
                         delete d.action;
@@ -927,8 +959,7 @@ $(document).ready(function () {
                     url:  '/api/transactions',
                     data: function(d){
                         d.id = row_id;
-                        d.weight= $("#DTE_Field_weight").val();
-                        d.Amount= $("#DTE_Field_Amount").val();
+                        d.amount= $("#DTE_Field_amount").val();
                         d.rate_id= $("#DTE_Field_rate_id").val();
                         delete d.data;
                         delete d.action;
@@ -971,14 +1002,8 @@ $(document).ready(function () {
                 name: "id",
                 type:  "readonly"
             }, {
-                label: "Weight:",
-                name: "weight",
-                attr: {
-                    "type": "number"
-                }
-            }, {
                 label: "Amount:",
-                name: "Amount",
+                name: "amount",
                 attr: {
                     "type": "number"
                 }
@@ -1035,7 +1060,7 @@ $(document).ready(function () {
             .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 
     }
- else if (location.pathname == '/stocks') {
+    else if (location.pathname == '/stocks') {
 
         $('.page-header').html('Stock');
         $('.panel-heading').html('Add, Edit, Delete Stock');
@@ -1043,7 +1068,6 @@ $(document).ready(function () {
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Product'}) );
         $('thead tr').append( $('<th />', {text : 'Canteen'}) );
-        $('thead tr').append( $('<th />', {text : 'Weight'}) );
         $('thead tr').append( $('<th />', {text : 'Amount'}) );
         $('thead tr').append( $('<th />', {text : 'Date of purchase'}) );
 
@@ -1067,8 +1091,7 @@ $(document).ready(function () {
                 {"data": "id"},
                 {"data": "product.name"},
                 {"data": "canteen.name"},
-                {"data": "weight"},
-                {"data": "Amount"},
+                {"data": "amount"},
                 {"data": "dop"}
             ],
             'bPaginate': false,
@@ -1086,9 +1109,8 @@ $(document).ready(function () {
                     data: function(d){
                         d.product_id = $("#DTE_Field_product_id").val();
                         d.canteen_id= $("#DTE_Field_canteen_id").val();
-                        d.weight= $("#DTE_Field_weight").val();
-                        d.Amount= $("#DTE_Field_Amount").val();
-                        d.dop= $("#DTE_Field_dop").val();
+                        d.amount= $("#DTE_Field_amount").val();
+                        // d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -1110,8 +1132,7 @@ $(document).ready(function () {
                         d.id = row_id;
                         d.product_id = $("#DTE_Field_product_id").val();
                         d.canteen_id= $("#DTE_Field_canteen_id").val();
-                        d.weight= $("#DTE_Field_weight").val();
-                        d.Amount= $("#DTE_Field_Amount").val();
+                        d.amount= $("#DTE_Field_amount").val();
                         d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
                         delete d.action;
@@ -1161,12 +1182,6 @@ $(document).ready(function () {
                 label: "Canteen:",
                 name: "canteen_id",
                 type: "select"
-            }, {
-                label: "Weight:",
-                name: "weight",
-                attr: {
-                    "type": "number"
-                }
             }, {
                 label: "Amount:",
                 name: "Amount",
@@ -1273,7 +1288,7 @@ $(document).ready(function () {
                 {"data": "employee.name"},
                 {"data": "transaction.id"},
                 {"data": "price"},
-                {"data": "dos"}
+                {"data": "transaction.dop"}
             ],
             'bPaginate': false,
             'select': true,
@@ -1381,15 +1396,15 @@ $(document).ready(function () {
                 attr: {
                     "type": "number"
                 }
-            },
-                {
-                    label: "Date of Selling:",
-                    name: "dos",
-                    type: "text",
-                    attr: {
-                        "placeholder": "Y-m-d H:i:s"
-                    }
-                }
+            }
+                // {
+                //     label: "Date of Selling:",
+                //     name: "dos",
+                //     type: "text",
+                //     attr: {
+                //         "placeholder": "Y-m-d H:i:s"
+                //     }
+                // }
             ],
             i18n: {
                 create: {
@@ -1432,7 +1447,7 @@ $(document).ready(function () {
                 }
 
                 for (var i = 0; i < transactions.length; i++) {
-                    solditem_transaction.push({label: transactions[i]['id'] + ' - Weight: ' + transactions[i]['weight'] + ' - Amount: ' + transactions[i]['Amount'], value: transactions[i]['id']});
+                    solditem_transaction.push({label: transactions[i]['id'] + ' - Weight: ' + transactions[i]['weight'] + ' - Purity: ' + transactions[i]['purity'], value: transactions[i]['id']});
                 }
                 editor.field('stock_id').update(solditem_stock);
                 editor.field('customer_id').update(solditem_customer);
@@ -1458,53 +1473,7 @@ $(document).ready(function () {
             .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 
     }
-    else if (location.pathname == '/rates') {
-
-        $('.page-header').html('Rates');
-        $('.panel-heading').html('Datewise rates');
-
-        $('thead tr').append( $('<th />', {text : 'ID'}) );
-        $('thead tr').append( $('<th />', {text : 'Rate'}) );
-        $('thead tr').append( $('<th />', {text : 'Date'}) );
-
-        var table = $('#table').DataTable({
-            'responsive': true,
-            "ajax": {
-                "url": "/api/rates",
-                "type": "GET",
-            },
-            "columns": [
-                {"data": "id"},
-                {"data": "rate"},
-                {"data": "date"}
-            ],
-            "order": [[ 2, "asc" ]],
-            'bPaginate': false,
-            'select': true,
-            "bInfo": false,
-            "bLengthChange" : false
-        });
-    }
     else if (location.pathname == '/') {
-        /*function rates(){
-             $.ajax({
-                url: 'http://www.apilayer.net/api/live?access_key=YOUR_ACCESS_KEY_HERE&format=1',
-                type: 'GET',
-                success: function (response) {
-                    var usd_inr = response['quotes']['USDINR'];
-                    var usd_xau = response['quotes']['USDXAU'];
-                    var usd_xag = response['quotes']['USDXAG'];
-                    var inr_xau = (10 / (usd_xau * 31.1035)) * usd_inr;
-                    var inr_xag = ((10 / (usd_xag * 31.1035)) * usd_inr)*100;
-                    $("#usd").html('<strong>' +  usd_inr.toPrecision(4) + '</strong>');
-                    $("#au").html('<strong>' + inr_xau.toPrecision(7) + '</strong>');
-                    $("#ag").html('<strong>' + inr_xag.toPrecision(7) + '</strong>');
-
-                }, error: function () {
-                    $.notify('There was an error fetching market data.');
-                }
-            });
-        } */
         $.ajax({
             url: '/api/tables',
             type: 'GET',

@@ -42,7 +42,7 @@ class StockController extends Controller
             http_response_code(422);
             echo json_encode($d);
         }else{
-            $data['data'] = ['weight' => $stock['weight'], 'Amount' => $stock['Amount'], 'canteen_id' => $stock['canteen_id'], 'product_id' => $stock['product_id'], 'dop' => $stock['dop']];
+            $data['data'] = ['weight' => $stock['weight'], 'purity' => $stock['purity'], 'canteen_id' => $stock['canteen_id'], 'product_id' => $stock['product_id'], 'dop' => $stock['dop']];
 
             header('Content-type: application/json');
             echo json_encode($data);
@@ -57,9 +57,9 @@ class StockController extends Controller
             $result = false;
             $d['weight'] = ['The weight must be a integer value'];
         }
-        if (!ValidateParams::validateInteger($data['Amount'])) {
+        if (!ValidateParams::validateInteger($data['purity'])) {
             $result = false;
-            $d['Amount'] = ['The Amount must be a integer value'];
+            $d['purity'] = ['The purity must be a integer value'];
         }
         if (!ValidateParams::validateInteger($data['product_id'])) {
             $result = false;
@@ -100,9 +100,9 @@ class StockController extends Controller
             $result = false;
             $d['weight'] = ['The weight must be a integer value'];
         }
-        if (!ValidateParams::validateInteger($data['Amount'])) {
+        if (!ValidateParams::validateInteger($data['purity'])) {
             $result = false;
-            $d['Amount'] = ['The Amount must be a integer value'];
+            $d['purity'] = ['The purity must be a integer value'];
         }
         if (!ValidateParams::validateInteger($data['canteen_id'])) {
             $result = false;
