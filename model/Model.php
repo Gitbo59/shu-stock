@@ -8,7 +8,7 @@ class Model
         $servername = "localhost";
         $username = "root";
         $password = "root";
-        $dbname = "SHU_DATA";
+        $dbname = "eam";
         $this->conn = new mysqli($servername, $username, $password, $dbname);
     }
 

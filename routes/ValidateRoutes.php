@@ -52,12 +52,12 @@ class ValidateRoutes
                 'canteen-aspect_court',
                 'canteen-adsetts',
                 'products',
-                'rates',
                 'stocks',
                 'stockInfo',
                 'items_sold',
                 'items_sold_info',
                 'transactions',
+                "transaction_info",
                 'users'
             );
         if (in_array($section, $items1)) {

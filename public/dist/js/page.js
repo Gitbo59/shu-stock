@@ -915,7 +915,7 @@ $(document).ready(function () {
             "columns": [
                 {"data": "id"},
                 {"data": "product_id"},
-                {"data": "product_id"},
+                {"data": "canteen_id"},
                 {"data": "dop"}
 
             ],
@@ -932,7 +932,10 @@ $(document).ready(function () {
                     type: 'POST',
                     url: '/api/transactions',
                     data: function(d){
-                        d.amount= $("#DTE_Field_amount").val();
+                        d.id= $("#DTE_Field_id").val();
+                        d.product_id= $("#DTE_Field_product_id").val();
+                        d.canteen_id= $("#DTE_Field_canteen_id").val();
+                        d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -994,20 +997,18 @@ $(document).ready(function () {
                 name: "id",
                 type:  "readonly"
             }, {
-                label: "Amount:",
+                label: "Product ID:",
                 name: "product_id",
-                attr: {
-                    "type": "number"
-                }
+                //type: "number"
+                
             },{
-                label: "Amount:",
+                label: "Canteen ID:",
                 name: "canteen_id",
-                attr: {
-                    "type": "number"
-                }
+                //type: "number"
             },{
-                label: "Amount:",
-                name: "dop",
+                label: "Date of Purchase:",
+                    name: "dop",
+                    type: "text"
                 
             }
             ],
@@ -1023,6 +1024,33 @@ $(document).ready(function () {
                 }
             }
         } );
+        $.ajax({
+            url: '/api/transaction_info',
+            type: 'GET',
+            data: {},
+            success: function (response) {
+                response = $.parseJSON(response);
+                var stock_product_id = [];
+                var stock_canteen_id = [];            
+                var product = response['data']['product'];
+                var canteen = response['data']['canteen'];
+                
+                for (var i = 0; i < product.length; i++) {
+                    stock_product_id.push({label: product[i]['id'] + product[i]['product_id'], value: product[i]['id']});
+                }
+
+                for (var i = 0; i < canteen.length; i++) {
+                    stock_canteen_id.push({label: canteen[i]['id'] + canteen[i]['canteen_id'], value: canteen[i]['id']});
+                }
+
+                editor.field('product_id').update(stock_product_id);
+                editor.field('canteen_id').update(stock_canteen_id);
+                
+
+            }, error: function () {
+                $.notify('There was an error fetching additional data.');
+            }
+        });
 
         new $.fn.dataTable.Buttons( table, [
             { extend: "create", className: 'btn btn-primary', editor: editor },

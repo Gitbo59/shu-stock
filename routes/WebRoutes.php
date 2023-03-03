@@ -10,7 +10,6 @@ require_once __DIR__ . '/../controllers/ProfileController.php';
 require_once __DIR__ . '/../controllers/CustomerController.php';
 require_once __DIR__ . '/../controllers/StockController.php';
 require_once __DIR__ . '/../controllers/ProductController.php';
-require_once __DIR__ . '/../controllers/RateController.php';
 require_once __DIR__ . '/../controllers/TableController.php';
 require_once __DIR__ . '/../controllers/CanteenController.php';
 require_once __DIR__ . '/../controllers/CanteenViewer.php';

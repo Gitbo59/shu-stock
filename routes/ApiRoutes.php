@@ -7,7 +7,6 @@ require_once __DIR__ . '/../controllers/TableController.php';
 require_once __DIR__ . '/../controllers/UserController.php';
 require_once __DIR__ . '/../controllers/EmployeeController.php';
 require_once __DIR__ . '/../controllers/ProductController.php';
-require_once __DIR__ . '/../controllers/RateController.php';
 require_once __DIR__ . '/../controllers/TransactionController.php';
 require_once __DIR__ . '/../controllers/StockController.php';
 require_once __DIR__ . '/../controllers/ItemsSoldController.php';
@@ -178,7 +177,7 @@ class ApiRoutes extends Route
                     }else {
                         TransactionController::get();
                     }
-                }
+                }               
                 else if(self::$method == 'POST')
                     TransactionController::insert(self::$data);
                 else if(self::$method == 'PATCH')
@@ -188,6 +187,12 @@ class ApiRoutes extends Route
                 else
                     self::response(404, ["message"=> "Page not found!"]);
                 break;
+            case 'transaction_info':
+                if(self::$method == 'GET')
+                    TransactionController::info();
+                else
+                    self::response(404, ["message"=> "Page not found!"]);
+                break; 
             case 'stocks':
                 if(self::$method == 'GET')
                     StockController::get();
