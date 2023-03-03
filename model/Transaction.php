@@ -1,6 +1,4 @@
 <?php
-
-
 require_once 'Model.php';
 
 class Transaction extends Model
@@ -20,9 +18,9 @@ class Transaction extends Model
         $result = $this->conn->query($sql);
         while($row = mysqli_fetch_assoc($result)){
             $row['id'] = (int) $row['id'];
-            $row['weight'] = (int) $row['weight'];
-            $row['purity'] = (int) $row['purity'];
-            $row['rate_id'] = (int) $row['rate_id'];
+            $row['product_id'] = (int) $row['product_id'];
+            $row['canteen_id'] = (int) $row['canteen_id'];
+
             $json[] = $row;
         }
 
@@ -30,8 +28,8 @@ class Transaction extends Model
     }
 
     function insert($data){
-        $sql = "INSERT INTO transactions (`weight`, `purity`, `rate_id`) VALUES ('".$data['weight']."', '".$data['purity']."', '".$data['rate_id']."')";
-
+        $sql = "INSERT INTO transactions (`product_id`, `canteen_id`, `dop`) VALUES ('".$data['product_id']."', '".$data['canteen_id']."','".$data['dop']."')";
+    
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
             return true;
@@ -48,9 +46,9 @@ class Transaction extends Model
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $row['id'] = (int) $row['id'];
-            $row['weight'] = (int) $row['weight'];
-            $row['purity'] = (int) $row['purity'];
-            $row['rate_id'] = (int) $row['rate_id'];
+            $row['product_id'] = (int) $row['product_id'];
+            $row['canteen_id'] = (int) $row['canteen_id'];
+            $row['dop'] = (int) $row['dop'];
             $this->conn->close();
             return $row;
         } else {
@@ -60,12 +58,13 @@ class Transaction extends Model
     }
 
     function update($data){
-        $sql = "UPDATE transactions SET weight='".$data['weight']."', purity='".$data['purity']."', rate_id='".$data['rate_id']."' WHERE id=".$data["id"];
+        $sql = "UPDATE transactions SET product_id='".$data['product_id']."', canteen_id='".$data['canteen_id']."', dop='".$data['dop']."' WHERE id=".$data["id"];
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
             return true;
         } else {
+            error_log("Database error: " . $this->conn->error);
             $this->conn->close();
             return false;
         }

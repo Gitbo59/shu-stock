@@ -69,10 +69,10 @@ class UserController extends Controller
             $result = false;
             $d['email'] = ['The email must be a valid email address and length must be less than 121 chars.'];
         }
-        if (!ValidateParams::validateInteger($data['emp_id'])) {
-            $result = false;
-            $d['weight'] = ['The employee_id must be a integer value'];
-        }
+        // if (!ValidateParams::validateInteger($data['emp_id'])) {
+        //     $result = false;
+        //     $d['weight'] = ['The employee_id must be a integer value'];
+        // }
         if($result == true){
             $user = $user->insert($data);
             if ($user == false) {

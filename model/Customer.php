@@ -39,7 +39,7 @@ class Customer extends Model
 
 
     function insert($data){
-        $sql = "INSERT INTO customers (name, address, phone, email) VALUES ('".$data['name']."', '".$data['address']."', '".$data['phone']."', '".$data['email']."')";
+        $sql = "INSERT INTO customers (name, phone, email) VALUES ('".$data['name']."', '".$data['phone']."', '".$data['email']."')";
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
@@ -51,7 +51,7 @@ class Customer extends Model
     }
 
     function update($data){
-        $sql = "UPDATE customers SET name='".$data['name']."', address='".$data['address']."', email='".$data['email']."', phone='".$data['phone']."' WHERE id=".$data["id"];
+        $sql = "UPDATE customers SET name='".$data['name']."', email='".$data['email']."', phone='".$data['phone']."' WHERE id=".$data["id"];
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();

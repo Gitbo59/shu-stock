@@ -42,7 +42,7 @@ class StockController extends Controller
             http_response_code(422);
             echo json_encode($d);
         }else{
-            $data['data'] = ['weight' => $stock['weight'], 'purity' => $stock['purity'], 'canteen_id' => $stock['canteen_id'], 'product_id' => $stock['product_id'], 'dop' => $stock['dop']];
+            $data['data'] = ['weight' => $stock['weight'], 'amount' => $stock['amount'], 'canteen_id' => $stock['canteen_id'], 'product_id' => $stock['product_id'], 'dop' => $stock['dop']];
 
             header('Content-type: application/json');
             echo json_encode($data);
@@ -57,9 +57,9 @@ class StockController extends Controller
             $result = false;
             $d['weight'] = ['The weight must be a integer value'];
         }
-        if (!ValidateParams::validateInteger($data['purity'])) {
+        if (!ValidateParams::validateInteger($data['amount'])) {
             $result = false;
-            $d['purity'] = ['The purity must be a integer value'];
+            $d['amount'] = ['The amount must be a integer value'];
         }
         if (!ValidateParams::validateInteger($data['product_id'])) {
             $result = false;
@@ -71,7 +71,7 @@ class StockController extends Controller
         }
         if (!ValidateParams::dateTime($data['dop'])) {
             $result = false;
-            $d['dop'] = ['The date must be in valid format(Y-m-d H:i:s).'];
+            $d['dop'] = ['The date must be in valid format(YYYY-MM-DD HH:MM:SS).'];
         }
         if($result == true){
             $stock = $stock->insert($data);
@@ -100,9 +100,9 @@ class StockController extends Controller
             $result = false;
             $d['weight'] = ['The weight must be a integer value'];
         }
-        if (!ValidateParams::validateInteger($data['purity'])) {
+        if (!ValidateParams::validateInteger($data['amount'])) {
             $result = false;
-            $d['purity'] = ['The purity must be a integer value'];
+            $d['amount'] = ['The amount must be a integer value'];
         }
         if (!ValidateParams::validateInteger($data['canteen_id'])) {
             $result = false;

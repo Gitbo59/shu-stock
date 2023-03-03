@@ -28,7 +28,7 @@ class CustomerController extends Controller{
             http_response_code(422);
             echo json_encode($d);
         }else{
-            $data['data'] = ['name' => $customer['name'], 'address' => $customer['address'], 'email' => $customer['email'], 'phone' => $customer['phone']];
+            $data['data'] = ['name' => $customer['name'], 'email' => $customer['email'], 'phone' => $customer['phone']];
             header('Content-type: application/json');
             echo json_encode($data);
         }
@@ -41,10 +41,6 @@ class CustomerController extends Controller{
         if (!ValidateParams::name($data['name'])) {
             $result = false;
             $d['name'] = ['The name must be a valid string and it\'s length must not be greater than 70 chars.'];
-        }
-        if (!ValidateParams::address($data['address'])) {
-            $result = false;
-            $d['address'] = ['The address must be a valid string and it\'s length must not be greater than 95 chars.'];
         }
         if (!ValidateParams::email($data['email'])) {
             $result = false;
@@ -80,10 +76,6 @@ class CustomerController extends Controller{
         if (!ValidateParams::name($data['name'])) {
             $result = false;
             $d['name'] = ['The name must be a valid string and it\'s length must not be greater than 70 chars.'];
-        }
-        if (!ValidateParams::address($data['address'])) {
-            $result = false;
-            $d['address'] = ['The address must be a valid string and it\'s length must not be greater than 95 chars.'];
         }
         if (!ValidateParams::email($data['email'])) {
             $result = false;

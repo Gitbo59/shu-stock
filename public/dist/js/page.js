@@ -118,10 +118,6 @@ $(document).ready(function () {
             }, {
                 label: "Name:",
                 name: "name"
-            }, {
-                label: "Address:",
-                name: "address",
-                type: "textarea"
             },{
                 label: "Phone:",
                 name: "phone",
@@ -347,7 +343,6 @@ $(document).ready(function () {
         $('thead tr').append( $('<th />', {text : 'Email'}) );
         $('thead tr').append( $('<th />', {text : 'Admin'}) );
         $('thead tr').append( $('<th />', {text : 'Staff'}) );
-        $('thead tr').append( $('<th />', {text : 'Employee ID'}) );
 
         $('#table').on( 'click', 'tr', function () {
             try {
@@ -372,7 +367,6 @@ $(document).ready(function () {
                 {"data": "email"},
                 {"data": "admin"},
                 {"data": "staff"},
-                {"data": "employee.id"}
                 
 
             ],
@@ -391,7 +385,6 @@ $(document).ready(function () {
                     data: function(d){
                         d.table = true,
                         d.emp_id= $("#DTE_Field_emp_id").val();
-                        d.name= $("#DTE_Field_name").val();
                         d.email= $("#DTE_Field_email").val();
                         d.admin= $("input[name='admin']:checked").val();
                         d.staff= $("input[name='staff']:checked").val();
@@ -415,7 +408,6 @@ $(document).ready(function () {
                     data: function(d){
                         d.id = row_id;
                         d.emp_id= $("#DTE_Field_emp_id").val();
-                        d.name= $("#DTE_Field_name").val();
                         d.email= $("#DTE_Field_email").val();
                         d.admin= $("input[name='admin']:checked").val();
                         d.staff= $("input[name='staff']:checked").val();
@@ -463,9 +455,6 @@ $(document).ready(function () {
                     label: "Employee:",
                     name: "emp_id",
                     type: "select"
-            }, {
-                label: "Name:",
-                name: "name"
             },{
                 label: "Email:",
                 name: "email"
@@ -541,8 +530,8 @@ $(document).ready(function () {
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Name'}) );
         $('thead tr').append( $('<th />', {text : 'Address'}) );
+        $('thead tr').append( $('<th />', {text : 'Contact Number'}) );
         $('thead tr').append( $('<th />', {text : 'Email'}) );
-        $('thead tr').append( $('<th />', {text : 'Phone'}) );
 
         $('#table').on( 'click', 'tr', function () {
             try {
@@ -700,48 +689,55 @@ $(document).ready(function () {
         
     }
     else if (location.pathname.includes('canteen-')) {
+        const canteens = ["cantor", "adsetts", "aspect_court", "atrium",  "charles_street", "owen_building"];
 
         titlelow = location.pathname.split('-')[1];
         title = titlelow.charAt(0).toUpperCase() + titlelow.slice(1).replace('_', ' ');
 
-        $('.page-header').html(title);
+        
         document.title = title
+        
+        
+        canteen_id = canteens.indexOf(titlelow)+1
+        $('.page-header').html(title);
 
+        $('thead tr').append( $('<th />', {text : 'Canteen'}) );
         $('thead tr').append( $('<th />', {text : 'Product'}) );
         $('thead tr').append( $('<th />', {text : 'Amount'}) );
         $('thead tr').append( $('<th />', {text : 'Price'}) );
         $('thead tr').append( $('<th />', {text : 'Part of Meal Deal?'}) );
-       
-
+        
         $('#table').on( 'click', 'tr', function () {
             try {
                 row_id = table.row( this ).data().id;
-                editor.s.ajax.edit.url = '/api/canteens';
-                editor.s.ajax.remove.url = '/api/canteens';
+                editor.s.ajax.edit.url = '/api/products';
+                editor.s.ajax.remove.url = '/api/products';
             }
             catch (e) {
 
             }
         } );
-        
-        var table = $('#table').DataTable({
-            'responsive': true,
-            "ajax": {
-                "url": "/api/canteens",
-                "type": "GET",
-            },
-            "columns": [
-                {"data": "id"},
-                {"data": "name"},
-                {"data": "address"},
-                {"data": "phone"},
-                {"data": "email"}
-            ],
-            'bPaginate': false,
-            'select': true,
-            "bInfo": false,
-            "bLengthChange" : false
-        });
+        if (canteens.includes(titlelow)) {
+            var table = $('#table').DataTable({
+                'responsive': true,
+                "ajax": {
+                    "url": "/api/stocks",
+                    "type": "GET",
+                },
+                "columns": [
+                    {"data": "canteen.id"},
+                    {"data": "product.name"},
+                    {"data": "amount"},
+                    {"data": "product.price"},
+                    {"data": "product.pomd"}
+                ],
+                'bPaginate': false,
+                'select': true,
+                "bInfo": false,
+                "bLengthChange" : false
+            });
+            table.column(0).search(canteen_id).draw();
+        }
         
     }
     else if (location.pathname == '/products') {
@@ -860,7 +856,10 @@ $(document).ready(function () {
                 name: "name"
             }, {
                 label: "Price:",
-                name: "price"
+                name: "price",
+                attr: {
+                    "type": "number"
+                }
             },{
                 label: "Part of the Meal Deal?",
                 name: "pomd"
@@ -893,13 +892,14 @@ $(document).ready(function () {
             .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 
     }
- else if (location.pathname == '/transactions') {
+    else if (location.pathname == '/transactions') {
 
         $('.page-header').html('Transactions');
         $('.panel-heading').html('Add, Edit, Delete Transactions');
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Product'}) );
+        $('thead tr').append( $('<th />', {text : 'Canteen'}) );
         $('thead tr').append( $('<th />', {text : 'Date of Purchase'}) );
 
 
@@ -921,8 +921,9 @@ $(document).ready(function () {
             },
             "columns": [
                 {"data": "id"},
-                {"data": "product_id"},
-                {"data": "dop"},
+                {"data": "product.name"},
+                {"data": "canteen.name"},
+                {"data": "dop"}
 
             ],
             'bPaginate': false,
@@ -938,8 +939,9 @@ $(document).ready(function () {
                     type: 'POST',
                     url: '/api/transactions',
                     data: function(d){
-                        d.amount= $("#DTE_Field_amount").val();
-                        d.rate_id= $("#DTE_Field_rate_id").val();
+                        d.product_id= $("#DTE_Field_product_id").val();
+                        d.canteen_id= $("#DTE_Field_canteen_id").val();
+                        d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -959,8 +961,9 @@ $(document).ready(function () {
                     url:  '/api/transactions',
                     data: function(d){
                         d.id = row_id;
-                        d.amount= $("#DTE_Field_amount").val();
-                        d.rate_id= $("#DTE_Field_rate_id").val();
+                        d.product_id= $("#DTE_Field_product_id").val();
+                        d.canteen_id= $("#DTE_Field_canteen_id").val();
+                        d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -1002,17 +1005,22 @@ $(document).ready(function () {
                 name: "id",
                 type:  "readonly"
             }, {
-                label: "Amount:",
-                name: "amount",
+                label: "Product ID:",
+                name: "product_id",
                 attr: {
                     "type": "number"
                 }
-            },
-                {
-                    label: "Rate:",
-                    name: "rate_id",
-                    type: "select"
+            },{
+                label: "Canteen ID:",
+                name: "canteen_id",
+                attr: {
+                    "type": "number"
                 }
+            },{
+                label: "Date of Purchase:",
+                name: "dop",
+                
+            }
             ],
             i18n: {
                 create: {
@@ -1026,25 +1034,6 @@ $(document).ready(function () {
                 }
             }
         } );
-
-        $.ajax({
-            url: '/api/rates',
-            type: 'GET',
-            data: {},
-            success: function (response) {
-
-                var rate_info = [];
-                response = $.parseJSON(response);
-                var data = response['data'];
-                for (var i = 0; i < data.length; i++) {
-                    rate_info.push({label: data[i]['id'] + ' - ' + data[i]['rate'] + '(' +data[i]['date'] +')', value: data[i]['id']});
-                }
-                editor.field('rate_id').update(rate_info);
-
-            }, error: function () {
-                $.notify('There was an error fetching rate data.');
-            }
-        });
 
         new $.fn.dataTable.Buttons( table, [
             { extend: "create", className: 'btn btn-primary', editor: editor },
@@ -1068,6 +1057,7 @@ $(document).ready(function () {
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Product'}) );
         $('thead tr').append( $('<th />', {text : 'Canteen'}) );
+        $('thead tr').append( $('<th />', {text : 'Weight'}) );
         $('thead tr').append( $('<th />', {text : 'Amount'}) );
         $('thead tr').append( $('<th />', {text : 'Date of purchase'}) );
 
@@ -1091,6 +1081,7 @@ $(document).ready(function () {
                 {"data": "id"},
                 {"data": "product.name"},
                 {"data": "canteen.name"},
+                {"data": "weight"},
                 {"data": "amount"},
                 {"data": "dop"}
             ],
@@ -1109,8 +1100,9 @@ $(document).ready(function () {
                     data: function(d){
                         d.product_id = $("#DTE_Field_product_id").val();
                         d.canteen_id= $("#DTE_Field_canteen_id").val();
+                        d.weight= $("#DTE_Field_weight").val();
                         d.amount= $("#DTE_Field_amount").val();
-                        // d.dop= $("#DTE_Field_dop").val();
+                        d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -1132,6 +1124,7 @@ $(document).ready(function () {
                         d.id = row_id;
                         d.product_id = $("#DTE_Field_product_id").val();
                         d.canteen_id= $("#DTE_Field_canteen_id").val();
+                        d.weight= $("#DTE_Field_weight").val();
                         d.amount= $("#DTE_Field_amount").val();
                         d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
@@ -1183,8 +1176,14 @@ $(document).ready(function () {
                 name: "canteen_id",
                 type: "select"
             }, {
+                label: "Weight:",
+                name: "weight",
+                attr: {
+                    "type": "number"
+                }
+            },{
                 label: "Amount:",
-                name: "Amount",
+                name: "amount",
                 attr: {
                     "type": "number"
                 }
@@ -1194,7 +1193,7 @@ $(document).ready(function () {
                     name: "dop",
                     type: "text",
                     attr: {
-                        "placeholder": "Y-m-d H:i:s"
+                        "placeholder": "YYYY-MM-DD HH:MM:SS"
                     }
                 }
             ],
@@ -1375,7 +1374,7 @@ $(document).ready(function () {
                 name: "id",
                 type:  "readonly"
             }, {
-                label: "Stock:",
+                label: "Stock ID:",
                 name: "stock_id",
                 type: "select"
             }, {
@@ -1397,14 +1396,6 @@ $(document).ready(function () {
                     "type": "number"
                 }
             }
-                // {
-                //     label: "Date of Selling:",
-                //     name: "dos",
-                //     type: "text",
-                //     attr: {
-                //         "placeholder": "Y-m-d H:i:s"
-                //     }
-                // }
             ],
             i18n: {
                 create: {
@@ -1435,7 +1426,7 @@ $(document).ready(function () {
                 var transactions = response['data']['transactions'];
 
                 for (var i = 0; i < stocks.length; i++) {
-                    solditem_stock.push({label: stocks[i]['id'] + ' - Product ID: ' + stocks[i]['product_id'], value: stocks[i]['id']});
+                    solditem_stock.push({label: stocks[i]['id'] + stocks[i]['product_id'], value: stocks[i]['id']});
                 }
 
                 for (var i = 0; i < customers.length; i++) {
@@ -1447,7 +1438,7 @@ $(document).ready(function () {
                 }
 
                 for (var i = 0; i < transactions.length; i++) {
-                    solditem_transaction.push({label: transactions[i]['id'] + ' - Weight: ' + transactions[i]['weight'] + ' - Purity: ' + transactions[i]['purity'], value: transactions[i]['id']});
+                    solditem_transaction.push({label: transactions[i]['id'] + ' - ' + transactions[i]['dop'], value: transactions[i]['id']});
                 }
                 editor.field('stock_id').update(solditem_stock);
                 editor.field('customer_id').update(solditem_customer);
@@ -1497,14 +1488,13 @@ $(document).ready(function () {
                 response = $.parseJSON(response);
                 var transactions = response['data'];
                 $.each(transactions, function (i, transaction) {
-                    $(".latest-transactions").append("<tr><td>"+transaction['id']+"</td><td>"+transaction['weight']+"</td><td>"+transaction['Amount']+"</td><td>"+transaction['rate']['rate']+"</td></tr>");
+                    $(".latest-transactions").append("<tr><td>"+transaction['id']+"</td><td>"+transaction['product_id']+"</td><td>"+transaction['dop']+"</td></tr>");
                 });
             }, error: function () {
                 $.notify('There was an error fetching data.');
             }
         });
-        rates();
-        setInterval(function(){rates();}, 120000);
+        
 
     }
     else if (location.pathname == '/profile') {

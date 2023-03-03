@@ -17,7 +17,7 @@ class Stock extends Model
         while($row = mysqli_fetch_assoc($result)){
             $row['id'] = (int) $row['id'];
             $row['weight'] = (int) $row['weight'];
-            $row['purity'] = (int) $row['purity'];
+            $row['amount'] = (int) $row['amount'];
             $row['canteen_id'] = (int) $row['canteen_id'];
             $row['product_id'] = (int) $row['product_id'];
             $json[] = $row;
@@ -27,7 +27,7 @@ class Stock extends Model
     }
 
     function insert($data){
-        $sql = "INSERT INTO stocks (`weight`, `purity`, `canteen_id`, `product_id`) VALUES ('".$data['weight']."', '".$data['purity']."', '".$data['canteen_id']."', '".$data['product_id']."')";
+        $sql = "INSERT INTO stocks (`weight`, `amount`, `canteen_id`, `product_id`, `dop`) VALUES ('".$data['weight']."', '".$data['amount']."', '".$data['canteen_id']."', '".$data['product_id']."', '".$data['dop']."')";
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
@@ -46,7 +46,7 @@ class Stock extends Model
             $row = $result->fetch_assoc();
             $row['id'] = (int) $row['id'];
             $row['weight'] = (int) $row['weight'];
-            $row['purity'] = (int) $row['purity'];
+            $row['amount'] = (int) $row['amount'];
             $row['canteen_id'] = (int) $row['canteen_id'];
             $row['product_id'] = (int) $row['product_id'];
             $this->conn->close();
@@ -58,7 +58,7 @@ class Stock extends Model
     }
 
     function update($data){
-        $sql = "UPDATE stocks SET weight='".$data['weight']."', purity='".$data['purity']."', product_id='".$data['product_id']."', canteen_id ='".$data['canteen_id']."' WHERE id=".$data["id"];
+        $sql = "UPDATE stocks SET weight='".$data['weight']."', amount='".$data['amount']."', product_id='".$data['product_id']."', canteen_id ='".$data['canteen_id']."', dop='".$data['dop']."' WHERE id=".$data["id"];
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();

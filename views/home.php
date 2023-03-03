@@ -42,7 +42,7 @@
 									<ul>
 										<li>Numbers of customers, transactions, items sold & employees</li>									
 										<li>Latest transactions</li>
-										<li>Live market rate for USD, Gold and Silver.</li>
+										
 									</ul> 
 								<br>
 								<h3>Pages
@@ -59,7 +59,7 @@
 									}								
 								?>
 								<p><a href="/products">Products</a>: This page is for modifying products.</p>
-								<p><a href="/rates">Rates</a>: This page is for viewing rates.</p>
+								
 								<p><a href="/transactions">Transactions</a>: This page is for managing transaction details.</p>
 								<p><a href="/items_sold">Items sold</a>: This page is for managing sold item details.</p>
 								<p><a href="/stocks">Stock</a>: This page is for managing stock.</p>
@@ -231,9 +231,9 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Weight</th>
-                                    <th>Amount</th>
-                                    <th>Rate</th>
+                                    <th>Product ID</th>
+                                    <th>Date of Purchase</th>
+                                
                                 </tr>
                                 </thead>
                                 <tbody class="latest-transactions">

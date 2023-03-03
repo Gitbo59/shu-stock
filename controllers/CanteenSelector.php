@@ -7,7 +7,7 @@ require_once __DIR__ . '/../helpers/ValidateParams.php';
 class CanteenSelector extends Controller
 {
     public static function index(){
-        $page = 'canteen-selector';
+        $page = 'table';
         self::view('layouts/app.php', $page);
     }
 
@@ -33,4 +33,5 @@ class CanteenSelector extends Controller
             echo json_encode($data);
         }
     }
+
 }
