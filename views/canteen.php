@@ -51,7 +51,7 @@
                         
                         
                     
-                        <a href="/customers">
+                        <a href="/canteen-cantor">
                             
                             <p><button class="button">What's in stock?</button></p>
                             
@@ -70,7 +70,7 @@
                         <p>Smaller canteen with decent amount of seating seating.</p>
                         
                     
-                        <a href="/customers">
+                        <a href="/canteen-charles_street">
                             
                             <p><button class="button">What's in stock?</button></p>
                             
@@ -89,7 +89,7 @@
                         <p>Smaller canteen with decent amount of seating seating.</p>
                         
                     
-                        <a href="/customers">
+                        <a href="/canteen-atrium">
                             
                             <p><button class="button">What's in stock?</button></p>
                             
@@ -110,7 +110,7 @@
                         <p>Smaller canteen with decent amount of seating seating.</p>
                         
                     
-                        <a href="/customers">
+                        <a href="/canteen-owen_building">
                             
                             <p><button class="button">What's in stock?</button></p>
                             
@@ -130,7 +130,7 @@
                         <p>Smaller canteen with decent amount of seating seating.</p>
                         
                     
-                        <a href="/customers">
+                        <a href="/canteen-aspect_court">
                             
                             <p><button class="button">What's in stock?</button></p>
                             
@@ -149,7 +149,7 @@
                         <p>Smaller canteen with decent amount of seating seating.</p>
                         
                     
-                        <a href="/customers">
+                        <a href="/canteen-adsetts">
                             
                             <p><button class="button">What's in stock?</button></p>
                             

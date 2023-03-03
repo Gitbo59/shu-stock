@@ -49,8 +49,6 @@
             include __DIR__ . '/../table.php';
         elseif ($page == 'canteen')
             include __DIR__ . '/../canteen.php';
-        elseif ($page == 'canteen-selector')
-            include __DIR__ . '/../canteen-selector.php';
     }else{
         include __DIR__ . '/../auth/login.php';
     }
