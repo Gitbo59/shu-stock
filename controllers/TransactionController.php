@@ -15,7 +15,7 @@ class TransactionController extends Controller
         $transaction = new Transaction();
         $transactions = $transaction->get($latest);
         foreach($transactions as $transaction){
-            $product = new Product();             
+            $product = new Product();
             $product = $product->show($transaction['product_id']);             
             $transaction['product'] =  $product;             
             $canteen = new Canteen();             
@@ -52,13 +52,16 @@ class TransactionController extends Controller
         $d = [];
         if (!ValidateParams::validateInteger($data['product_id'])) {
             $result = false;
-            $d['product_id'] = ['The product_id must be an integer value'];
+            $d['product_id'] = ['The product_id must be a integer value'];
         }
         if (!ValidateParams::validateInteger($data['canteen_id'])) {
             $result = false;
-            $d['canteen_id'] = ['The canteen_id must be an integer value'];
+            $d['canteen_id'] = ['The canteen_id must be a integer value'];
         }
-        
+        // if (!ValidateParams::date($data['dop'])) {
+        //     $result = false;
+        //     $d['dop'] = ['The dop must be a integer value'];
+        // }
         if($result == true){
             $transaction = $transaction->insert($data);
             if ($transaction == false) {
@@ -91,7 +94,10 @@ class TransactionController extends Controller
             $result = false;
             $d['canteen_id'] = ['The canteen_id must be a integer value'];
         }
-        
+        // if (!ValidateParams::date($data['dop'])) {
+        //     $result = false;
+        //     $d['dop'] = ['The dos must be a integer value'];
+        // }
         if($result == true){
             $transaction = $transaction->update($data);
             if ($transaction == false) {

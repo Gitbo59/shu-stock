@@ -56,6 +56,7 @@ class ValidateRoutes
                 'stockInfo',
                 'items_sold',
                 'items_sold_info',
+                'canteen_stock_info',
                 'transactions',
                 "transaction_info",
                 'users'

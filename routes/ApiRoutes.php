@@ -229,6 +229,12 @@ class ApiRoutes extends Route
                 else
                     self::response(404, ["message"=> "Page not found!"]);
                 break;
+            case 'canteen_stock_info':
+                if(self::$method == 'GET')
+                    StockController::info();
+                else
+                    self::response(404, ["message"=> "Page not found!"]);
+            break;
             case 'tables':
                 if(self::$method == 'GET')
                     TableController::count();

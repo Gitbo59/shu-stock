@@ -700,37 +700,35 @@ $(document).ready(function () {
         $('thead tr').append( $('<th />', {text : 'Amount'}) );
         $('thead tr').append( $('<th />', {text : 'Price'}) );
         $('thead tr').append( $('<th />', {text : 'Part of Meal Deal?'}) );
-       
-
+        
         $('#table').on( 'click', 'tr', function () {
             try {
                 row_id = table.row( this ).data().id;
-                editor.s.ajax.edit.url = '/api/canteens';
-                editor.s.ajax.remove.url = '/api/canteens';
+                editor.s.ajax.edit.url = '/api/products';
+                editor.s.ajax.remove.url = '/api/products';
             }
             catch (e) {
 
             }
         } );
-        
+    
         var table = $('#table').DataTable({
             'responsive': true,
             "ajax": {
-                "url": "/api/canteens",
+                "url": "/api/stocks",
                 "type": "GET",
             },
             "columns": [
-                {"data": "id"},
-                {"data": "name"},
-                {"data": "address"},
-                {"data": "phone"},
-                {"data": "email"}
+                {"data": "product.name"},
+                {"data": "amount"},
+                {"data": "product.price"},
+                {"data": "product.pomd"}
             ],
             'bPaginate': false,
             'select': true,
             "bInfo": false,
             "bLengthChange" : false
-        });
+        })
         
     }
     else if (location.pathname == '/products') {
