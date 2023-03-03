@@ -27,7 +27,7 @@ class Stock extends Model
     }
 
     function insert($data){
-        $sql = "INSERT INTO stocks (`weight`, `amount`, `canteen_id`, `product_id`) VALUES ('".$data['weight']."', '".$data['amount']."', '".$data['canteen_id']."', '".$data['product_id']."')";
+        $sql = "INSERT INTO stocks (`weight`, `amount`, `canteen_id`, `product_id`, `dop`) VALUES ('".$data['weight']."', '".$data['amount']."', '".$data['canteen_id']."', '".$data['product_id']."', '".$data['dop']."')";
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();
@@ -58,7 +58,7 @@ class Stock extends Model
     }
 
     function update($data){
-        $sql = "UPDATE stocks SET weight='".$data['weight']."', amount='".$data['amount']."', product_id='".$data['product_id']."', canteen_id ='".$data['canteen_id']."' WHERE id=".$data["id"];
+        $sql = "UPDATE stocks SET weight='".$data['weight']."', amount='".$data['amount']."', product_id='".$data['product_id']."', canteen_id ='".$data['canteen_id']."', dop='".$data['dop']."' WHERE id=".$data["id"];
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();

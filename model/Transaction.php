@@ -48,7 +48,7 @@ class Transaction extends Model
             $row['id'] = (int) $row['id'];
             $row['product_id'] = (int) $row['product_id'];
             $row['canteen_id'] = (int) $row['canteen_id'];
-
+            $row['dop'] = (int) $row['dop'];
             $this->conn->close();
             return $row;
         } else {
@@ -58,7 +58,7 @@ class Transaction extends Model
     }
 
     function update($data){
-        $sql = "UPDATE transactions SET product_id='".$data['product_id']."', canteen_id='".$data['canteen_id']."' WHERE id=".$data["id"];
+        $sql = "UPDATE transactions SET product_id='".$data['product_id']."', canteen_id='".$data['canteen_id']."', dop='".$data['dop']."' WHERE id=".$data["id"];
 
         if ($this->conn->query($sql) === TRUE) {
             $this->conn->close();

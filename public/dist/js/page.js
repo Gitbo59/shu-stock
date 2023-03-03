@@ -689,13 +689,19 @@ $(document).ready(function () {
         
     }
     else if (location.pathname.includes('canteen-')) {
+        const canteens = ["cantor", "adsetts", "aspect_court", "atrium",  "charles_street", "owen_building"];
 
         titlelow = location.pathname.split('-')[1];
         title = titlelow.charAt(0).toUpperCase() + titlelow.slice(1).replace('_', ' ');
 
-        $('.page-header').html(title);
+        
         document.title = title
+        
+        
+        canteen_id = canteens.indexOf(titlelow)+1
+        $('.page-header').html(title);
 
+        $('thead tr').append( $('<th />', {text : 'Canteen'}) );
         $('thead tr').append( $('<th />', {text : 'Product'}) );
         $('thead tr').append( $('<th />', {text : 'Amount'}) );
         $('thead tr').append( $('<th />', {text : 'Price'}) );
@@ -711,24 +717,27 @@ $(document).ready(function () {
 
             }
         } );
-    
-        var table = $('#table').DataTable({
-            'responsive': true,
-            "ajax": {
-                "url": "/api/stocks",
-                "type": "GET",
-            },
-            "columns": [
-                {"data": "product.name"},
-                {"data": "amount"},
-                {"data": "product.price"},
-                {"data": "product.pomd"}
-            ],
-            'bPaginate': false,
-            'select': true,
-            "bInfo": false,
-            "bLengthChange" : false
-        })
+        if (canteens.includes(titlelow)) {
+            var table = $('#table').DataTable({
+                'responsive': true,
+                "ajax": {
+                    "url": "/api/stocks",
+                    "type": "GET",
+                },
+                "columns": [
+                    {"data": "canteen.id"},
+                    {"data": "product.name"},
+                    {"data": "amount"},
+                    {"data": "product.price"},
+                    {"data": "product.pomd"}
+                ],
+                'bPaginate': false,
+                'select': true,
+                "bInfo": false,
+                "bLengthChange" : false
+            });
+            table.column(0).search(canteen_id).draw();
+        }
         
     }
     else if (location.pathname == '/products') {
@@ -883,14 +892,14 @@ $(document).ready(function () {
             .appendTo( $('.col-sm-6:eq(0)', table.table().container() ) );
 
     }
- else if (location.pathname == '/transactions') {
+    else if (location.pathname == '/transactions') {
 
         $('.page-header').html('Transactions');
         $('.panel-heading').html('Add, Edit, Delete Transactions');
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
-        $('thead tr').append( $('<th />', {text : 'Product ID'}) );
-        $('thead tr').append( $('<th />', {text : 'Canteen ID'}) );
+        $('thead tr').append( $('<th />', {text : 'Product'}) );
+        $('thead tr').append( $('<th />', {text : 'Canteen'}) );
         $('thead tr').append( $('<th />', {text : 'Date of Purchase'}) );
 
 
@@ -912,8 +921,8 @@ $(document).ready(function () {
             },
             "columns": [
                 {"data": "id"},
-                {"data": "product_id"},
-                {"data": "canteen_id"},
+                {"data": "product.name"},
+                {"data": "canteen.name"},
                 {"data": "dop"}
 
             ],
@@ -930,7 +939,6 @@ $(document).ready(function () {
                     type: 'POST',
                     url: '/api/transactions',
                     data: function(d){
-                        d.id= $("#DTE_Field_id").val();
                         d.product_id= $("#DTE_Field_product_id").val();
                         d.canteen_id= $("#DTE_Field_canteen_id").val();
                         d.dop= $("#DTE_Field_dop").val();
@@ -953,7 +961,9 @@ $(document).ready(function () {
                     url:  '/api/transactions',
                     data: function(d){
                         d.id = row_id;
-                        d.amount= $("#DTE_Field_amount").val();
+                        d.product_id= $("#DTE_Field_product_id").val();
+                        d.canteen_id= $("#DTE_Field_canteen_id").val();
+                        d.dop= $("#DTE_Field_dop").val();
                         delete d.data;
                         delete d.action;
                     },
@@ -997,16 +1007,18 @@ $(document).ready(function () {
             }, {
                 label: "Product ID:",
                 name: "product_id",
-                //type: "number"
-                
+                attr: {
+                    "type": "number"
+                }
             },{
                 label: "Canteen ID:",
                 name: "canteen_id",
-                //type: "number"
+                attr: {
+                    "type": "number"
+                }
             },{
                 label: "Date of Purchase:",
-                    name: "dop",
-                    type: "text"
+                name: "dop",
                 
             }
             ],
@@ -1022,33 +1034,6 @@ $(document).ready(function () {
                 }
             }
         } );
-        $.ajax({
-            url: '/api/transaction_info',
-            type: 'GET',
-            data: {},
-            success: function (response) {
-                response = $.parseJSON(response);
-                var stock_product_id = [];
-                var stock_canteen_id = [];            
-                var product = response['data']['product'];
-                var canteen = response['data']['canteen'];
-                
-                for (var i = 0; i < product.length; i++) {
-                    stock_product_id.push({label: product[i]['id'] + product[i]['product_id'], value: product[i]['id']});
-                }
-
-                for (var i = 0; i < canteen.length; i++) {
-                    stock_canteen_id.push({label: canteen[i]['id'] + canteen[i]['canteen_id'], value: canteen[i]['id']});
-                }
-
-                editor.field('product_id').update(stock_product_id);
-                editor.field('canteen_id').update(stock_canteen_id);
-                
-
-            }, error: function () {
-                $.notify('There was an error fetching additional data.');
-            }
-        });
 
         new $.fn.dataTable.Buttons( table, [
             { extend: "create", className: 'btn btn-primary', editor: editor },
