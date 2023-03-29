@@ -9,15 +9,25 @@ conn = pymysql.connect(host= "localhost",
 
 x = conn.cursor()
 
-sql = "INSERT INTO products (id, name, price) VALUES (%s, %s, %s)"
-
 with open('prodid.txt') as f:
-    for line in f:
-        pass
-    last_line = line
+        for line in f:
+            pass
+        last_line = line
 
-val = (last_line, 'test', '1.00')
-x.execute(sql, val)
+def insert(last_line):
+    query = "INSERT INTO products (id, name, price) VALUES (%s, %s, %s)"
+    val = (last_line, 'testing', '1.00')
+    return query, val
+
+def delete(last_line):
+    query = "DELETE FROM products WHERE id = %s"
+    val = (last_line)
+    
+    return (query, val)
+    
+print(delete(last_line))
+x.execute(delete(last_line))
+
 
 conn.commit()
 
