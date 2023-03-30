@@ -31,9 +31,9 @@ $(document).ready(function () {
             },
             "columns": [
                 {"data": "id"},
-                {"data": "name"},
-                {"data": "phone"},
-                {"data": "email"}
+                {"data": "name"},           
+                {"data": "email"},
+                {"data": "phone"}
             ],
             'bPaginate': false,
             'select': true,
@@ -704,19 +704,10 @@ $(document).ready(function () {
         $('thead tr').append( $('<th />', {text : 'Canteen'}) );
         $('thead tr').append( $('<th />', {text : 'Product'}) );
         $('thead tr').append( $('<th />', {text : 'Amount'}) );
-        $('thead tr').append( $('<th />', {text : 'Price'}) );
+        $('thead tr').append( $('<th />', {text : 'Price (£)'}) );
         $('thead tr').append( $('<th />', {text : 'Part of Meal Deal?'}) );
         
-        $('#table').on( 'click', 'tr', function () {
-            try {
-                row_id = table.row( this ).data().id;
-                editor.s.ajax.edit.url = '/api/products';
-                editor.s.ajax.remove.url = '/api/products';
-            }
-            catch (e) {
-
-            }
-        } );
+       
         if (canteens.includes(titlelow)) {
             var table = $('#table').DataTable({
                 'responsive': true,
@@ -747,7 +738,7 @@ $(document).ready(function () {
 
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Name'}) );
-        $('thead tr').append( $('<th />', {text : 'Price'}) );
+        $('thead tr').append( $('<th />', {text : 'Price (£)'}) );
         $('thead tr').append( $('<th />', {text : 'Part of the Meal Deal?'}) );
 
         $('#table').on( 'click', 'tr', function () {
@@ -1261,7 +1252,7 @@ $(document).ready(function () {
         $('thead tr').append( $('<th />', {text : 'Customer'}) );
         $('thead tr').append( $('<th />', {text : 'Employee'}) );
         $('thead tr').append( $('<th />', {text : 'Transaction'}) );
-        $('thead tr').append( $('<th />', {text : 'Price'}) );
+        $('thead tr').append( $('<th />', {text : 'Price (£)'}) );
         $('thead tr').append( $('<th />', {text : 'Date of selling'}) );
 
         $('#table').on( 'click', 'tr', function () {

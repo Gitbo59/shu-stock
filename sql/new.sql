@@ -110,13 +110,13 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `products` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` bigint NOT NULL,
   `name` varchar(35) NOT NULL,
   `price` decimal(4,2) NOT NULL,
   `pomd` varchar(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Sandwich',1.50,'Y'),(2,'Drink',1.50,'Y'),(3,'Cookie',3.00,'N'),(4,'Egg',3.00,'N'),(5,'Pizza',3.00,'N'),(6,'Brownie',3.00,'Y'),(13,'Noodle',1.00,'N'),(14,'Dish',1.00,'Y'),(15,'Candy',1.00,'N');
+INSERT INTO `products` VALUES (5000328461755,'Crisps',1.50,'Y'),(5026109006234,'Dish',1.00,'Y'),(5026109006441,'Drink',1.50,'Y'),(5026109006442,'Brownie',3.00,'Y'),(5026109006525,'Candy',1.00,'N'),(5026109006534,'Noodle',1.00,'N'),(5026109006551,'Cookie',3.00,'N'),(5026109006632,'Sandwich',1.50,'Y'),(5026109006653,'Pizza',3.00,'N'),(5026109006661,'Egg',3.00,'N');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,14 +174,14 @@ DROP TABLE IF EXISTS `stocks`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `stocks` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `product_id` int NOT NULL,
+  `product_id` bigint NOT NULL,
   `canteen_id` int NOT NULL,
   `weight` int unsigned NOT NULL,
   `amount` int unsigned NOT NULL,
   `dop` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
   KEY `canteen_id` (`canteen_id`),
+  KEY `stocks_ibfk_2_idx` (`product_id`),
   CONSTRAINT `stocks_ibfk_1` FOREIGN KEY (`canteen_id`) REFERENCES `canteens` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `stocks_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
@@ -193,7 +193,7 @@ CREATE TABLE `stocks` (
 
 LOCK TABLES `stocks` WRITE;
 /*!40000 ALTER TABLE `stocks` DISABLE KEYS */;
-INSERT INTO `stocks` VALUES (1,5,1,600,12,'2017-09-06 00:00:01'),(2,1,2,12,20,'2017-09-06 00:00:02'),(3,2,1,8,63,'2017-09-06 00:00:03'),(4,1,1,12,12,'2017-09-06 00:00:00'),(5,1,5,3,500,'2017-09-06 00:00:00'),(6,6,5,9,365,'2017-09-06 00:00:00'),(7,14,4,34,1313,'2017-09-06 00:00:00'),(8,15,6,6,588,'2017-09-06 12:00:00'),(9,13,6,60,30,'2023-09-06 00:00:00');
+INSERT INTO `stocks` VALUES (1,5000328461755,1,600,12,'2017-09-06 00:00:01'),(2,5000328461755,2,12,20,'2017-09-06 00:00:02'),(3,5026109006234,1,8,63,'2017-09-06 00:00:03'),(4,5000328461755,1,12,12,'2017-09-06 00:00:00'),(5,5000328461755,5,3,500,'2017-09-06 00:00:00'),(6,5026109006441,5,9,365,'2017-09-06 00:00:00'),(7,5026109006441,4,34,1313,'2017-09-06 00:00:00'),(8,5026109006653,6,6,588,'2017-09-06 12:00:00'),(9,5026109006441,6,60,30,'2023-09-06 00:00:00');
 /*!40000 ALTER TABLE `stocks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,13 +206,13 @@ DROP TABLE IF EXISTS `transactions`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transactions` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `product_id` int NOT NULL,
+  `product_id` bigint NOT NULL,
   `canteen_id` int NOT NULL,
   `dop` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
   KEY `canteen_id` (`canteen_id`),
-  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  CONSTRAINT `product_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE,
   CONSTRAINT `product_ibfk_2` FOREIGN KEY (`canteen_id`) REFERENCES `canteens` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -223,7 +223,7 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1,1,1,'2022-09-06 00:00:01'),(2,2,1,'2022-09-06 00:00:01'),(3,1,3,'2022-09-06 00:00:10'),(4,4,1,'2022-09-06 00:00:01'),(5,6,1,'2022-09-06 00:00:01'),(10,2,2,'2022-09-06 00:00:01'),(11,1,3,'2022-09-06 00:00:01');
+INSERT INTO `transactions` VALUES (1,5000328461755,1,'2022-09-06 00:00:01'),(2,5026109006441,1,'2022-09-06 00:00:01'),(3,5000328461755,3,'2022-09-06 00:00:10'),(4,5026109006441,1,'2022-09-06 00:00:01'),(5,5026109006441,1,'2022-09-06 00:00:01'),(10,5000328461755,2,'2022-09-06 00:00:01'),(11,5000328461755,3,'2022-09-06 00:00:01');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,4 +267,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-06  9:55:07
+-- Dump completed on 2023-03-30 16:36:56
