@@ -716,7 +716,7 @@ $(document).ready(function () {
                     "type": "GET",
                 },
                 "columns": [
-                    {"data": "canteen.id"},
+                    {"data": "canteen.id", "visible": false},
                     {"data": "product.name"},
                     {"data": "amount"},
                     {"data": "product.price"},
@@ -725,7 +725,12 @@ $(document).ready(function () {
                 'bPaginate': false,
                 'select': true,
                 "bInfo": false,
-                "bLengthChange" : false
+                "bLengthChange" : false,
+                "columnDefs": [
+                    {
+                        "visible": false, "targets": 0
+                    }
+                ]
             });
             table.column(0).search(canteen_id).draw();
         }
@@ -1048,7 +1053,7 @@ $(document).ready(function () {
         $('thead tr').append( $('<th />', {text : 'ID'}) );
         $('thead tr').append( $('<th />', {text : 'Product'}) );
         $('thead tr').append( $('<th />', {text : 'Canteen'}) );
-        $('thead tr').append( $('<th />', {text : 'Weight'}) );
+        $('thead tr').append( $('<th />', {text : 'Weight (g)'}) );
         $('thead tr').append( $('<th />', {text : 'Amount'}) );
         $('thead tr').append( $('<th />', {text : 'Date of purchase'}) );
 

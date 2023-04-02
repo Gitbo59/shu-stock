@@ -32,6 +32,12 @@
                 <li class="">
                 <a href="/canteens"><i class="fa fa-cutlery fa-fw"></i>Canteen Admin</a>
                 </li>
+                <li class="">
+                <a href="/products"><i class="fa fa-shopping-bag fa-fw"></i>Products</a>
+                </li>
+                <li class="">
+                    <a href="/stocks"><i class="fa fa-archive fa-fw"></i>Stock</a>
+                </li>            
             <?php 
             }
             ?>
@@ -58,13 +64,6 @@
             </li>
             
                 
-            <li class="">
-                <a href="/products"><i class="fa fa-shopping-bag fa-fw"></i>Products</a>
-            </li>
-            
-            <li class="">
-                <a href="/stocks"><i class="fa fa-archive fa-fw"></i>Stock</a>
-            </li>
             
         </ul>
     </div>

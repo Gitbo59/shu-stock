@@ -1,7 +1,4 @@
 import pymysql
-import time
-from watchdog.observers import Observer
-from watchdog.events import FileSystemEventHandler
 
 conn = pymysql.connect(host= "localhost",
                        user="root",
@@ -11,16 +8,55 @@ conn = pymysql.connect(host= "localhost",
 
 x = conn.cursor()
 
-try:
-    while True:
-        scan_input = input("Scan ID: ")
+canteen_id_map = {
+    "Cantor": 1,
+    "Adsetts": 2,
+    "Aspect Court": 3,
+    "Atrium": 4,
+    "Charles Street": 5,
+    "Owen": 6,
+}
 
-        query = "UPDATE stocks SET amount = amount - 1 WHERE product_id =  %s"
+def main():
+    try:
+        canteen_name = input("Enter Canteen: ").title()
+        scan(canteen_name)
 
-        x.execute(query, scan_input)
+    except KeyError:
+        canteen_name = ""
+        print("Invalid canteen name. Please enter a valid canteen name.")
+        main()
+        
+    except KeyboardInterrupt:
+        print("\nProgram terminated")
 
-        conn.commit()
 
-        print(x.rowcount, "records with ID", scan_input, "updated.")
-except KeyboardInterrupt:
-    print("\nProgram terminated by user")
+def scan(canteen_name):
+    try:
+        canteen_id = canteen_id_map[canteen_name]
+    
+    
+        while True:
+            scan_input = input("Scan ID: ")
+
+            if not scan_input.isdigit():
+                print("The ID must be a number. Please enter a valid ID.")
+                scan(canteen_name)
+
+            query = "UPDATE stocks SET amount = amount - 1 WHERE canteen_id = %s AND product_id =  %s"
+
+            x.execute(query, (canteen_id, scan_input))
+
+            conn.commit()
+            if x.rowcount == 0:
+                print("There are no records with that ID, try again")
+            else:
+                print(x.rowcount, "Updated", canteen_name, "stock level using ID", scan_input)
+
+            
+    except KeyboardInterrupt:
+        print("\n")
+        main()
+
+if __name__ == "__main__":
+    main()
