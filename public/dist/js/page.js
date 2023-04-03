@@ -716,7 +716,7 @@ $(document).ready(function () {
                     "type": "GET",
                 },
                 "columns": [
-                    {"data": "canteen.id", "visible": false},
+                    {"data": "canteen.name", "visible": false},
                     {"data": "product.name"},
                     {"data": "amount"},
                     {"data": "product.price"},
@@ -732,7 +732,7 @@ $(document).ready(function () {
                     }
                 ]
             });
-            table.column(0).search(canteen_id).draw();
+            table.column(0).search(title).draw();
         }
         
     }
